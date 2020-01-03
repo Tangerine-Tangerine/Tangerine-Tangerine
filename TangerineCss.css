@@ -1,0 +1,20 @@
+body{
+  background-color: #FFF4C5;
+  text-align: center;
+  vertical-align: center;
+}
+
+#home{
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  padding-top: 13%;
+  font-family: 'Andale Mono', "Courier New", serif;
+  font-weight: bold;
+  letter-spacing: 2px;
+
+}
+
+.home2{
+  display: none;
+}

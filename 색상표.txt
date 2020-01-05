@@ -5,7 +5,8 @@
 귤색_Tagerine 글자색: #ff914d
 club rental service 글자색: #5C913B
 username, password 색: #E3AC53
-
+대여버튼: #ED7D31
+반납버튼: #70AD47
 표 th: #FFC000
 
 bttn-simple bttn-md bttn-warning

@@ -32,7 +32,7 @@
     </div>
 
     <!-- 대여 물품 목록표 -->
-    <div>
+    <div id="goods">
       <table>
         <tr>
           <th>번호</th><th>분류</th><th>물품명</th><th>대여자</th><th>대여기간<th>대여여부</th>
@@ -50,10 +50,29 @@
 
     <!-- 대여 버튼 눌렀을때 -->
     <div id="rent">
-      대여자 <input type="text" size="20" placeholder="대여자"> <br><br>
-      대여기간<input type="date" id="date" ><br><br>
-      비밀번호 <input type="password" size="20"><br><br>
-      <input type="Submit" value="대여">
+      <table>
+        <tr>
+          <td>물품명</td>
+          <td><input type="text" size="17.2" disabled></td>
+        </tr>
+        <tr>
+          <td>대여자</td>
+          <td><input type="text" size="17" placeholder="대여자" required></td>
+        </tr>
+        <tr>
+          <td>대여기간</td>
+          <td><input type="date" id="date" required></td>
+        </tr>
+        <tr>
+          <td>비밀번호</td>
+          <td><input type="password" size="17" required></td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input type="Submit" class="bttn-simple bttn-md bttn-rent" value="대여">
+          </td>
+        </tr>
+    </table>
     </div>
 
     <!-- 반납 버튼 눌렀을때 -->

@@ -4,7 +4,7 @@ body{
   vertical-align: center;
 }
 
-#home{
+/* #home{
   display: inline-block;
   text-align: center;
   width: 100%;
@@ -13,8 +13,12 @@ body{
   font-weight: bold;
   letter-spacing: 2px;
 
+} */
+
+#rent{
+  display: none;
 }
 
-.home2{
+#return{
   display: none;
 }

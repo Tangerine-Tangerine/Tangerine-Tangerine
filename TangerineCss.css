@@ -1,22 +1,141 @@
+@import 'https://fonts.googleapis.com/css?family=Raleway';
+
 body{
   background-color: #FFF4C5;
   text-align: center;
   vertical-align: center;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+#logo{
+  vertical-align: top;
+}
+
+/* 메뉴바 */
+div.container{
+  font-family: Raleway;
+  margin: 0;
+  padding: 0.5em;
+  text-align: center;
+  margin-bottom: 3px;
+}
+div.container a{
+  color: #ffbd59;
+  text-decoration: none;
+  font: 20px Raleway;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin: 0px 10px;
+  padding: 10px 10px;
+  position: relative;
+  z-index: 0;
+  cursor: pointer;
+}
+/* Pull up  */
+div.pullUp a:before{
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  left: 0px;
+  bottom: 0px;
+  content: '';
+  background: #ffbd59;
+  opacity: 0.3;
+  transition: all 0.3s;
+}
+div.pullUp a:hover:before{
+  height: 100%;
 }
 
 /* #home{
-  display: inline-block;
-  text-align: center;
-  width: 100%;
-  padding-top: 13%;
-  font-family: 'Andale Mono', "Courier New", serif;
-  font-weight: bold;
-  letter-spacing: 2px;
+display: inline-block;
+text-align: center;
+width: 100%;
+padding-top: 13%;
+font-family: 'Andale Mono', "Courier New", serif;
+font-weight: bold;
+letter-spacing: 2px;
+}
 
+#home table{
+display: inline;
+font-family: "Inconsolata", sans-serif;
+color: #ED7D31;
 } */
 
+
+/* 물품 목록 */
+.home2 table{
+  border-top: 5px double white;
+  border-bottom: 5px double white;
+  width: 100%;
+  letter-spacing: 1px;
+}
+.home2 table th{
+  background: #ffbd59;
+  border-radius: 0.5em;
+  padding: 4px;
+}
+.home2 table td{
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 0.5em;
+}
+
+
+/* 표 내부 버튼 */
+.bttn-simple{
+  margin: 0;
+  padding: 0;
+  border-width: 0;
+  border-color: transparent;
+  background: transparent;
+  font-weight: 400;
+  cursor: pointer;
+  position: relative;
+  padding: 5px 7px;
+
+  font-family: inherit;
+  overflow: hidden;
+  border-width: 0;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.4);
+  color: #fff;
+  -webkit-transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+  transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+.bttn-simple:hover, .bttn-simple:focus{
+  opacity: 0.75;
+}
+.bttn-md{
+  margin: 0;
+  padding: 0;
+  border-width: 0;
+  border-color: transparent;
+  background: transparent;
+  font-weight: 400;
+  cursor: pointer;
+  position: relative;
+  font-size: 18px;
+  font-family: inherit;
+  padding: 5px 7px;
+}
+.bttn-simple.bttn-md,{
+  font-size: 20px;
+  font-family: inherit;
+  padding: 5px 12px;
+}
+/* 대여버튼 */
+.bttn-rent{
+  background-color: #ED7D31;
+}
+/* 반납버튼 */
+.bttn-retu{
+  background-color: #70AD47;
+}
+
+/* 추가 div */
 #rent{
-  display: none;
+  /* display: none; */
 }
 
 #return{

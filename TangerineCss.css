@@ -139,7 +139,7 @@ color: #ED7D31;
   padding: 20px;
   width: 250px;
   text-align: center;
-  /* display: none; */
+  display: none;
 }
 #rent table{
   display: inline-block;
@@ -154,5 +154,8 @@ color: #ED7D31;
   text-align: right;
 }
 #return{
-  display: none;
+  /* display: none; */
+}
+#renturn table td[colspan="2"]{
+  text-align: right;
 }

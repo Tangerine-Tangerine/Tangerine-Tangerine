@@ -9,4 +9,4 @@ username, password 색: #E3AC53
 반납버튼: #70AD47
 표 th: #FFC000
 
-bttn-simple bttn-md bttn-warning
+뀨

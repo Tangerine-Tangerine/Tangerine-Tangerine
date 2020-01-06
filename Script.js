@@ -13,7 +13,7 @@ $(document).ready(function() {
   }
 
   // Page unBlur
-  fu   nction pageUnblur() {
+  function pageUnblur() {
 
   }
 

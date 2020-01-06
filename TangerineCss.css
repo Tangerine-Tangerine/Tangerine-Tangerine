@@ -134,28 +134,43 @@ color: #ED7D31;
 }
 
 /* 추가 div */
+/* 대여 */
 #rent{
   background: #FCF9EA;
   padding: 20px;
   width: 250px;
   text-align: center;
-  display: none;
+
+  /* display: none; */
 }
 #rent table{
   display: inline-block;
 }
 #rent table td{
   text-align: left;
-  /* color: #ff914d; */
   font-weight: bold;
   padding: 3px 5px;
 }
 #rent table td[colspan="2"]{
   text-align: right;
 }
+/* 반납 */
 #return{
+  background: #FCF9EA;
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+
   /* display: none; */
 }
-#renturn table td[colspan="2"]{
+#return table{
+  display: inline-block;
+}
+#return table td{
+  text-align: left;
+  font-weight: bold;
+  padding: 3px 5px;
+}
+#return table td[colspan="2"]{
   text-align: right;
 }

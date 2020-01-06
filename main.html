@@ -2,6 +2,10 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
+  <!-- Jquery Plugin -->
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
   <link rel="icon" href="img/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap&subset=korean" rel="stylesheet">
 
@@ -10,81 +14,93 @@
 </head>
 <body>
   <!-- <div id="home">
-    <img id="Tangerine" src="./Tangerine.png" alt="생귤탱귤">
-    <table id="homeT">
-      <tr>
-        <td><span>Username </span></td><td><input type="text" id="username" name="username"></td>
-      </tr>
-      <tr>
-        <td><span>Password </span></td><td><input type="password" id="password" name="password"></td>
-      </tr>
-    </table><br>
-  </div> -->
+  <img id="Tangerine" src="./Tangerine.png" alt="생귤탱귤">
+  <table id="homeT">
+  <tr>
+  <td><span>Username </span></td><td><input type="text" id="username" name="username"></td>
+</tr>
+<tr>
+<td><span>Password </span></td><td><input type="password" id="password" name="password"></td>
+</tr>
+</table><br>
+</div> -->
 
-  <div class="home2">
-    <!-- 메뉴바 -->
-    <div class="container pullUp">
-      <img id="logo" src="./img/TanLogo2.png">
-      <a id="Main" name="Main">MAIN</a>
-      <a id="Info" name="Info">USERINFO</a>
-      <a id="QR" name="QR">QR</a>
-      <!-- <input type="button" id="logout" name="logout" value="logout"> -->
-    </div>
-
-    <!-- 대여 물품 목록표 -->
-    <div id="goods">
-      <table>
-        <tr>
-          <th>번호</th><th>분류</th><th>물품명</th><th>대여자</th><th>대여기간<th>대여여부</th>
-        </tr>
-        <tr>
-          <td>1</td><td>책</td><td>소영쓰필기</td><td>김소영</td><td>19.12.31~20.01.07</td>
-          <td><input type="button" class="bttn-simple bttn-md bttn-rent" value="대여"></td>
-        </tr>
-        <tr>
-          <td>2</td><td>책</td><td>자바사자책</td><td>박소히</td><td>19.12.29~20.01.03</td>
-          <td><input type="button" class="bttn-simple bttn-md bttn-retu" value="반납"></td>
-        </tr>
-      </table>
-    </div>
-
-    <!-- 대여 버튼 눌렀을때 -->
-    <div id="rent">
-      <table>
-        <tr>
-          <td>물품명</td>
-          <td><input type="text" size="17.2" disabled></td>
-        </tr>
-        <tr>
-          <td>대여자</td>
-          <td><input type="text" size="17" placeholder="대여자" required></td>
-        </tr>
-        <tr>
-          <td>대여기간</td>
-          <td><input type="date" id="date" required></td>
-        </tr>
-        <tr>
-          <td>비밀번호</td>
-          <td><input type="password" size="17" required></td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <input type="Submit" class="bttn-simple bttn-md bttn-rent" value="대여">
-          </td>
-        </tr>
-    </table>
-    </div>
-
-    <!-- 반납 버튼 눌렀을때 -->
-    <div id="return">
-      대여자 <input type="text" size="20" placeholder="대여자"> <br><br>
-      비밀번호 <input type="password" size="20"><br><br>
-      <input type="Submit" value="반납">
-    </div>
-
+<div class="home2">
+  <!-- 메뉴바 -->
+  <div class="container pullUp">
+    <img id="logo" src="./img/TanLogo2.png">
+    <a id="Main" name="Main">MAIN</a>
+    <a id="Info" name="Info">USERINFO</a>
+    <a id="QR" name="QR">QR</a>
+    <!-- <input type="button" id="logout" name="logout" value="logout"> -->
   </div>
-  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 
-  <script src="Script.js"></script>
+  <!-- 대여 물품 목록표 -->
+  <div id="goods">
+    <table>
+      <tr>
+        <th>번호</th><th>분류</th><th>물품명</th><th>대여자</th><th>대여기간<th>대여여부</th>
+      </tr>
+      <tr>
+        <td>1</td><td>책</td><td>소영쓰필기</td><td>김소영</td><td>19.12.31~20.01.07</td>
+        <td><input type="button" class="bttn-simple bttn-md bttn-rent" value="대여"></td>
+      </tr>
+      <tr>
+        <td>2</td><td>책</td><td>자바사자책</td><td>박소히</td><td>19.12.29~20.01.03</td>
+        <td><input type="button" class="bttn-simple bttn-md bttn-retu" value="반납"></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 대여 버튼 눌렀을때 -->
+  <div id="rent">
+    <table>
+      <tr>
+        <td>물품명</td>
+        <td><input type="text" size="17.2" disabled></td>
+      </tr>
+      <tr>
+        <td>대여자</td>
+        <td><input type="text" size="17" placeholder="대여자" required></td>
+      </tr>
+      <tr>
+        <td>대여기간</td>
+        <td><input type="date" id="date" required></td>
+      </tr>
+      <tr>
+        <td>비밀번호</td>
+        <td><input type="password" size="17" required></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <input type="Submit" class="bttn-simple bttn-md bttn-rent" value="대여">
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 반납 버튼 눌렀을때 -->
+  <div id="return">
+    <table>
+      <tr>
+        <td>대여자</td>
+        <td><input type="text" size="20" placeholder="대여자"> <br><br></td>
+      </tr>
+      <tr>
+        <td>비밀번호</td>
+        <td><input type="password" size="20"><br><br></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <input type="Submit" value="반납">
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+
+<script src="Script.js"></script>
 </body>
 </html>

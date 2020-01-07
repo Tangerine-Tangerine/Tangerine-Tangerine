@@ -1,12 +1,11 @@
 배경색: #FFF4C5
 귤 이모지 색: #ffbd59
 귤 이모지 꼭지 색: #662113
-귤 이모지 잎사귀 색: #5c013b
+귤 이모지 잎사귀 색: #5C913B
 귤색_Tagerine 글자색: #ff914d
 club rental service 글자색: #5C913B
 username, password 색: #E3AC53
 대여버튼: #ED7D31
 반납버튼: #70AD47
-표 th: #FFC000
 
-bttn-simple bttn-md bttn-warning
+표: #FFC000

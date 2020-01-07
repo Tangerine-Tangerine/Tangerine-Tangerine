@@ -160,6 +160,7 @@ div.pullUp a:hover:before{
 }
 #manage img{
   display: inline-block;
+  width:15em;
 }
 #manage caption{
   text-align: center;

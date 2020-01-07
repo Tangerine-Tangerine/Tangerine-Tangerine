@@ -23,7 +23,6 @@ $(document).ready(function() {
     $.ajax({
       url: "Data.json",
       success: function(result) {
-        alert("success");
         for(var i=0; i<result.length; i++){
           var loadTr = $('<tr />', {
             id : "line" + i

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+
+  <link  href="nanagerCss.css" rel="stylesheet">
+  <title>Tangerine-Tangerine</title>
+</head>
+<body>
+  <div>
+
+    <!-- 관리자 모드 로그인 -->
+    <div class="row">
+      <div id="manage" class="col-xs-9 col-xs-offset-1 col-sm-6 col-md-3 col-md-offset-4">
+        <table id="homeT">
+          <caption> <img src="img/tangerine.png"></caption>
+          <tr>
+            <td colspan="2"></td>
+          </tr>
+          <tr>
+            <td><span>Username </span></td>
+            <td><input type="text" id="username" style="width:11em;" name="username"></td>
+          </tr>
+          <tr>
+            <td><span>Password </span></td>
+            <td><input type="password" id="password" style="width:11em;" name="password"></td>
+          </tr>
+          <tr>
+            <td colspan="2"><input type="submit" id="login" class="bttn-simple bttn-md bttn-mlogin" name="login" value="login"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- 메뉴바 -->
+    <div class="row">
+      <div class="menu pullUp col-xs-12 col-md-12">
+        <img id="logo" src="./img/TanLogo2.png">
+        <a>MAIN</a>
+        <a>물품 추가</a>
+        <a>물품 제거</a>
+        <a>반납 처리</a>
+        <input type="button" id="logout" name="logout" value="logout">
+      </div>
+    </div>
+
+    <!-- 대여 물품 목록표 -->
+    <div class="row">
+      <div id="goods" class="col-xs-12 col-md-12">
+        <table id="mainTable">
+          <tr>
+            <th>번호</th><th>분류</th><th>물품명</th><th>대여자</th><th>대여기간<th>대여여부</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- 물품추가 -> qr생성 -->
+    <div id="qrcreate">
+      <label>물품 이름</label>
+      <input id ="m_title"></input><br>
+      <label>물품 번호</label>
+      <input id ="m_number"></input><br>
+      <label>분류</label>
+      <input id ="m_group"></input><br>
+      <button id="createBtn">create</button>
+
+      <!-- qr코드 이미지 나타나는 부분 -->
+      <div id="qr">
+        <img id="qrcode" src='' />
+      </div>
+      <button>물품 추가</button>
+    </div>
+
+  </div> <!-- 전체 div 끝 -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="managerScript.js"></script>
+</body>
+</html>

@@ -8,7 +8,10 @@ body{
 }
 
 #logo{
-  vertical-align: middle;
+  vertical-align: top;
+  width: 7em;
+  margin-left: 0.05em;
+  margin-right: 0.1em;
 }
 
 /* 메뉴바 */
@@ -25,8 +28,8 @@ div.menu a{
   font: 1.5em Raleway;
   font-weight: bold;
   letter-spacing: 0.07em;
-  margin: 0.2em 0.4em;
-  padding: 0.4em 0.4em;
+  margin: 0.1em 0.1em;
+  padding: 0.3em 0.1em;
   position: relative;
   z-index: 0;
   cursor: pointer;
@@ -151,7 +154,7 @@ div.pullUp a:hover:before{
 }
 
 /* 관리자 로그인 */
-#manage{
+/* #manage{
   display: none;
 
   background: #FCF9EA;
@@ -179,15 +182,20 @@ div.pullUp a:hover:before{
 }
 #manage table td[colspan="2"]{
   text-align: right;
+} */
+#temp{
+  display: inline-block;
 }
 .bttn-mlogin{
   letter-spacing: normal;
   background: #ffbd59;
-  width: 6.5em;
+  width: 2.5em;
+  vertical-align: top;
+  /* display: inline-block; */
 
   text-align: right;
   background-image: url('img/key.png');
-  background-position:  0.6em 0.2em;
+  background-position:  0.5em 0.2em;
   background-repeat: no-repeat;
   border: 0;
   outline: 0;

@@ -21,7 +21,7 @@ $(document).ready(function() {
   // DataBase Table Load ( 초기 테이블 로드 )
   function loadTable() {
     $.ajax({
-      url: "Data.json",
+      url: "data/Data.json",
       success: function(result) {
         for(var i=0; i<result.length; i++){
           var loadTr = $('<tr />', {

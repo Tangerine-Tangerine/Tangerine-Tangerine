@@ -8,7 +8,7 @@ $(document).ready(function(){
     var m_group = $('#m_group').val();
 
     // var m_url="http://168.188.7.186/Tangerine/load.html#";
-    var m_url="http://localhost/%ec%83%9d%ea%b7%a4%ed%83%b1%ea%b7%a4/load.html#";
+    var m_url="http://35.188.153.88/Tangerine-Tangerine/load.html#";
 
     // encodeURIComponent로 인코딩
 

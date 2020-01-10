@@ -1,0 +1,197 @@
+
+@import 'https://fonts.googleapis.com/css?family=Raleway';
+
+body{
+  background-color: #13292a;
+  text-align: center;
+  vertical-align: center;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* 버튼 */
+.bttn-simple{
+  margin: 0;
+  padding: 0;
+  border-color: transparent;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  padding: 0.4em 0.6em;
+  color: #fff;
+
+  font-family: inherit;
+  overflow: hidden;
+  border-width: 0;
+  border-radius: 0.3em;
+  background: rgba(255,255,255,0.4);
+  -webkit-transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+  transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+.bttn-simple:hover, .bttn-simple:focus{
+  opacity: 0.75;
+}
+.bttn-md{
+  margin: 0.2em 0.1em;
+  padding: 0;
+  border-width: 0;
+  border-color: transparent;
+  background: transparent;
+  font-weight: 400;
+  position: relative;
+  font-family: inherit;
+  padding: 0.3em 0.5em;
+}
+
+/* 로그인 버튼 */
+.bttn-mlogin{
+  letter-spacing: normal;
+  background: #ffbd59;
+  letter-spacing: 2px;
+  font-weight: bold;
+  width: 6em;
+  vertical-align: top;
+
+  text-align: right;
+  background-image: url('img/key.png');
+  background-position:  0.5em 0.2em;
+  background-repeat: no-repeat;
+  border: 0;
+  outline: 0;
+}
+
+#manage{
+  padding-top: 19%;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+#manage table{
+  color: #E3AC53;
+  display: inline-block;
+}
+#manage td{
+  padding: 0.2em 0;
+  padding-right: 0;
+  text-align: right;
+}
+#manage input{
+  text-align: left;
+}
+#manage td[colspan="2"] input{
+  text-align: right;
+}
+
+/* 로그인 후, 표 나오는 페이지 */
+#logged{
+  display: none;
+}
+#logo{
+  vertical-align: middle;
+  width: 7em;
+  margin-left: 0.05em;
+  margin-right: 0.1em;
+}
+
+/* 메뉴바 */
+* {
+	-webkit-transition-property: all;
+	-webkit-transition-duration: .2s;
+  -moz-transition-timing-function: cubic-bezier(100,50,21,6);
+	-moz-transition-property: all;
+  -moz-transition-timing-function: cubic-bezier(100,50,21,6);
+}
+#menu{
+  padding-top: 1.2em;
+  text-align:center;
+  height: 4.2em;
+}
+#menu img{
+  vertical-align: middle;
+}
+.mbtn{
+  color:#999;
+  font-size: 1.2em;
+  font-weight: bold;
+  letter-spacing: 0.03em;
+  text-transform:uppercase;
+  text-decoration:none;
+  border-radius: 0;
+  padding: 0.3em 0.5em;
+}
+.mbtn:hover{
+  border:none;
+  background:rgba(0, 0, 0, 0.4);
+  background: #ffbd59;
+  font-weight: bold;
+  padding: 0.8em 0.5em;
+  text-decoration:none;
+  color:#1b1b1b;
+}
+
+.bttn-logout{
+  margin-left: 1em;
+  background: #ffbd59;
+  font-weight: bold;
+  font-size: 0.8em;
+  color: #13292a;
+}
+
+/* 물품 목록 */
+#goods{
+  border-top: 3px double #ffbd59;
+  border-bottom: 3px double #ffbd59;
+}
+#goods table{
+  margin: 0.4em 0;
+  width: 100%;
+  font-size: 0.9em;
+}
+#goods table th{
+  background: #ffbd59;
+  border-radius: 0.5em;
+  text-align: center;
+  padding: 0.3em;
+}
+#goods table td{
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 0.5em;
+}
+
+#qrcreate{
+  margin-top: 8%;
+  border-radius: 0.5em;
+  background: #324142;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  padding: 1em;
+  border: 0.1em solid rgb(255, 189, 89, 0.2);
+  box-shadow: 0 0 1em 0.4em rgb(255, 189, 89, 0.2);
+}
+#qrcreate table{
+  color: #E3AC53;
+  display: inline-block;
+}
+#qrcreate td{
+  padding: 0.2em 1em;
+  padding-right: 0;
+  text-align: left;
+}
+#qrcreate input{
+  color: black;
+}
+#qrcreate td[colspan="2"] input{
+  text-align: right;
+}
+/* create 버튼 */
+.bttn-create{
+  background: #39DB92;
+  color: #13292a;
+  font-weight: bold;
+  letter-spacing: 0.07em;
+}
+/* 물품 추가 버튼 */
+.bttn-add{
+  background: #39DB92;
+  color: #13292a;
+  font-weight: bold;
+  margin-top: 1em;
+}

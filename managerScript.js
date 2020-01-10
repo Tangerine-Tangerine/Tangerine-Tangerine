@@ -1,3 +1,4 @@
+$("#add").css("display","none");
 $(document).ready(function(){
   $("#save").css("display","none");
   $('#createBtn').click(function(){
@@ -21,6 +22,7 @@ $(document).ready(function(){
 
     // 이미지가 나타날 영역에 원하는 내용을 넣은 QR code의 이미지를 출력
     $('#qrcode').attr('src', googleQRUrl+m_url+m_number+'_'+m_group+'&choe=UTF-8');
+    $("#add").css("display","block");
   });
 
 });

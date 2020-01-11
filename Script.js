@@ -21,7 +21,7 @@ $(document).ready(function() {
   // DataBase Table Load ( 초기 테이블 로드 )
   function loadTable() {
     $.ajax({
-      url: "Data.json",
+      url: "data/Data.json",
       success: function(result) {
         for(var i=0; i<result.length; i++){
           var loadTr = $('<tr />', {
@@ -49,7 +49,7 @@ $(document).ready(function() {
               type : "button",
               value : "불가",
               id : i+"btn",
-              class : "bttn-simple bttn-md bttn-rent",
+              class : "bttn-simple bttn-md bttn-no",
               click : function() { tableBtnClicked(this); }
             });
           }
@@ -58,7 +58,7 @@ $(document).ready(function() {
               type : "button",
               value : "가능",
               id : i+"btn",
-              class : "bttn-simple bttn-md bttn-retu",
+              class : "bttn-simple bttn-md bttn-yes",
               click : function() { tableBtnClicked(this); }
             });
           }

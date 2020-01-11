@@ -1,106 +1,109 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ko" dir="ltr">
 <head>
   <meta charset="utf-8">
+  <!-- bootstrap -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
   <!-- Jquery Plugin -->
   <script src="http://code.jquery.com/jquery-latest.js"></script>
-  <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
   <link rel="icon" href="img/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap&subset=korean" rel="stylesheet">
 
-  <link  href="TangerineCss.css" rel="stylesheet"/>
+  <link  href="TangerineCss.css" rel="stylesheet">
   <title>Tangerine-Tangerine</title>
 </head>
 <body>
-  <!-- <div id="home">
-  <img id="Tangerine" src="./Tangerine.png" alt="생귤탱귤">
-  <table id="homeT">
-  <tr>
-  <td><span>Username </span></td><td><input type="text" id="username" name="username"></td>
-</tr>
-<tr>
-<td><span>Password </span></td><td><input type="password" id="password" name="password"></td>
-</tr>
-</table><br>
-</div> -->
 
-<div class="home2">
-  <!-- 메뉴바 -->
-  <div class="container pullUp">
-    <img id="logo" src="./img/TanLogo2.png">
-    <a id="Main" name="Main">MAIN</a>
-    <a id="Info" name="Info">USERINFO</a>
-    <a id="QR" name="QR">QR</a>
-    <!-- <input type="button" id="logout" name="logout" value="logout"> -->
-  </div>
+  <div class="container home2">
+    <!-- 메뉴바 -->
+    <div class="row">
+      <div class="menu pullUp col-xs-12 col-md-12">
+        <img id="logo" src="./img/TanLogo2.png">
+        <table id="temp">
+          <tr>
+            <td><a id="Main" name="Main">MAIN</a></td>
+            <td><a id="Info" name="Info">SEARCH</a></td>
+            <td><a id="QR" name="QR">QR</a></td>
+          </tr>
+        </table>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" id="login" class="bttn-simple bttn-md bttn-mlogin" name="login" value="">
+      </div>
+    </div>
 
-  <!-- 대여 물품 목록표 -->
-  <div id="goods">
-    <table id="mainTable">
-      <tr>
-        <th>번호</th><th>분류</th><th>물품명</th><th>대여자</th><th>대여기간<th>대여여부</th>
-      </tr>
-      <tr>
-        <td>1</td><td>책</td><td>소영쓰필기</td><td>김소영</td><td>19.12.31~20.01.07</td>
-        <td><input type="button" class="bttn-simple bttn-md bttn-rent" value="대여"></td>
-      </tr>
-      <tr>
-        <td>2</td><td>책</td><td>자바사자책</td><td>박소히</td><td>19.12.29~20.01.03</td>
-        <td><input type="button" class="bttn-simple bttn-md bttn-retu" value="반납"></td>
-      </tr>
-    </table>
-  </div>
+    <!-- 대여 물품 목록표 -->
+    <div class="row">
+      <div id="goods" class="col-xs-12 col-md-12">
+        <table id="mainTable">
+          <tr>
+            <th>번호</th><th>분류</th><th>물품명</th><th>대여자</th><th>대여기간<th>대여여부</th>
+          </tr>
+        </table>
+      </div>
+    </div>
 
-  <!-- 대여 버튼 눌렀을때 -->
-  <div id="rent">
-    <table>
-      <tr>
-        <td>물품명</td>
-        <td><input type="text" size="17.2" disabled></td>
-      </tr>
-      <tr>
-        <td>대여자</td>
-        <td><input type="text" size="17" placeholder="대여자" required></td>
-      </tr>
-      <tr>
-        <td>대여기간</td>
-        <td><input type="date" id="date" required></td>
-      </tr>
-      <tr>
-        <td>비밀번호</td>
-        <td><input type="password" size="17" required></td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <input type="Submit" class="bttn-simple bttn-md bttn-rent" value="대여">
-        </td>
-      </tr>
-    </table>
-  </div>
+    <!-- 대여 버튼 눌렀을때 -->
+    <div class="row">
+      <div id="rent" class="col-xs-9 col-xs-offset-1 col-sm-6 col-md-3 col-md-offset-4">
+        <table>
+          <tr>
+            <td>물품명</td>
+            <td><input type="text" style="width:11em;" disabled></td>
+          </tr>
+          <tr>
+            <td>대여자</td>
+            <td><input type="text" style="width:11em;" placeholder="대여자" required></td>
+          </tr>
+          <tr>
+            <td>대여기간</td>
+            <td><input type="date" style="width:11em;" id="date" required></td>
+          </tr>
+          <tr>
+            <td>비밀번호</td>
+            <td><input type="password" style="width:11em;" required></td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <input type="submit" class="bttn-simple bttn-md bttn-rent" value="대여">
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
 
-  <!-- 반납 버튼 눌렀을때 -->
-  <div id="return">
-    <table>
-      <tr>
-        <td>대여자</td>
-        <td><input type="text" size="20" placeholder="대여자"> <br><br></td>
-      </tr>
-      <tr>
-        <td>비밀번호</td>
-        <td><input type="password" size="20"><br><br></td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <input type="Submit" value="반납">
-        </td>
-      </tr>
-    </table>
-  </div>
+    <!-- 반납 버튼 눌렀을때 -->
+    <div class="row">
+      <div id="return" class="col-xs-9 col-xs-offset-1 col-sm-6 col-md-3 col-md-offset-4">
+        <table>
+          <tr>
+            <td>물품명</td>
+            <td><input type="text" style="width:11em;" disabled></td>
+          </tr>
+          <tr>
+            <td>대여자</td>
+            <td><input type="text" style="width:11em;" placeholder="대여자"></td>
+          </tr>
+          <tr>
+            <td>비밀번호</td>
+            <td><input type="password" style="width:11em;"></td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <input type="submit" class="bttn-simple bttn-md bttn-retu" value="반납">
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
 
-</div>
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  </div> <!-- container home2 div end -->
 
-<script src="Script.js"></script>
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="Script.js"></script>
 </body>
 </html>

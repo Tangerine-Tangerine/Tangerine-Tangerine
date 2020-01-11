@@ -6,6 +6,9 @@ $(document).ready(function() {
   // URL 파싱
   function parseURL(){
     var url = $(location).attr('href');
+    var url_parse = url.split("#");
+    var url_data = url_parse.split("-");
+
   }
 
   // Page Blur(흐림처리)
@@ -25,7 +28,7 @@ $(document).ready(function() {
       success: function(result) {
         for(var i=0; i<result.length; i++){
           var loadTr = $('<tr />', {
-            id : "line" + i
+            id : "line-" + i
           });
 
           var indexTd = $('<td />', { text : result[i][0] });
@@ -48,8 +51,8 @@ $(document).ready(function() {
             var btn = $('<input />', {
               type : "button",
               value : "불가",
-              id : i+"btn",
-              class : "bttn-simple bttn-md bttn-no",
+              id : "btn-"+i",
+              class : "bttn-simple bttn-md bttn-rent",
               click : function() { tableBtnClicked(this); }
             });
           }
@@ -57,8 +60,8 @@ $(document).ready(function() {
             var btn = $('<input />', {
               type : "button",
               value : "가능",
-              id : i+"btn",
-              class : "bttn-simple bttn-md bttn-yes",
+              id : "btn-"+i,
+              class : "bttn-simple bttn-md bttn-retu",
               click : function() { tableBtnClicked(this); }
             });
           }
@@ -80,23 +83,40 @@ $(document).ready(function() {
   // 테이블의 가능/불가 버튼 누를시 발생
   function tableBtnClicked(obj) {
     var objId = $(obj).attr("id");
-    var idx = objId.substring(0,1);
+    var idxArr = objId.split("-");
+    var idx = Number(idxArr[1]);
 
-
+    if($(obj).val()=="가능"){
+      possibleDivload(idx);
+    } else{
+      impossibleDivload(idx);
+    }
   }
 
   // 불가 Div load
-  function impossibleDivload(){
+  function impossibleDivload(idx){
     $("#rent").css("display","block");
     pageBlur();
 
   }
 
   // 가능 Div load
-  function possibleDivload(){
+  function possibleDivload(idx){
     $("#return").css("display","block");
     pageBlur();
 
   }
 
+  // Rent Div에서 버튼 눌렀을때
+  function rentSubmit(){
+
+  }
+
+  // Return Div에서 버튼 눌렀을때
+  function returnSubmit(){
+
+  }
+
+  $("#rent-btn").click(rentSubmit);
+  $("#return-btn").click(returnSubmit);
 });

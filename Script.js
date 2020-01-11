@@ -1,5 +1,5 @@
 // 대여 기간 현재 날짜로 초기
-document.getElementById('date').value = new Date().toISOString().substring(0, 10);
+document.getElementById('rent-date').value = new Date().toISOString().substring(0, 10);
 $(document).ready(function() {
   loadTable();
 
@@ -31,28 +31,43 @@ $(document).ready(function() {
             id : "line-" + i
           });
 
-          var indexTd = $('<td />', { text : result[i][0] });
+          var indexTd = $('<td />', {
+            text : result[i][0],
+            id : "index-"+i
+          });
           indexTd.appendTo(loadTr);
 
-          var catTd = $('<td />', { text : result[i][1] });
+          var catTd = $('<td />', {
+            text : result[i][1],
+            id : "cat-"+i
+          });
           catTd.appendTo(loadTr);
 
-          var pnameTd = $('<td />', { text : result[i][2] });
+          var pnameTd = $('<td />', {
+            text : result[i][2],
+            id : "pname-"+i
+          });
           pnameTd.appendTo(loadTr);
 
-          var rnameTd = $('<td />', { text : result[i][3] });
+          var rnameTd = $('<td />', {
+            text : result[i][3],
+            id : "rname-"+i
+          });
           rnameTd.appendTo(loadTr);
 
           var date = result[i][4] + " ~ " + result[i][5];
-          var dateTd = $('<td />', { text : date });
+          var dateTd = $('<td />', {
+            text : date,
+            id : "date-"+i
+          });
           dateTd.appendTo(loadTr);
 
           if(result[i][6]==0) { // 대여여부 0이면 대여중
             var btn = $('<input />', {
               type : "button",
               value : "불가",
-              id : "btn-"+i",
-              class : "bttn-simple bttn-md bttn-rent",
+              id : "btn-"+i,
+              class : "bttn-simple bttn-md bttn-no",
               click : function() { tableBtnClicked(this); }
             });
           }
@@ -61,7 +76,7 @@ $(document).ready(function() {
               type : "button",
               value : "가능",
               id : "btn-"+i,
-              class : "bttn-simple bttn-md bttn-retu",
+              class : "bttn-simple bttn-md bttn-yes",
               click : function() { tableBtnClicked(this); }
             });
           }
@@ -76,8 +91,14 @@ $(document).ready(function() {
   }
 
   // Table 변경시 함수
-  function changeTable() {
+  function changeTable(inputRent,idx) {
+    $.ajax({
+      url: "data/Data.json",
+      success: function(result) {
 
+      },
+      error : function(result) { alert("물품 데이터를 찾을 수 없습니다."); }
+    });
   }
 
   // 테이블의 가능/불가 버튼 누를시 발생
@@ -95,25 +116,29 @@ $(document).ready(function() {
 
   // 불가 Div load
   function impossibleDivload(idx){
+    $("#return-pname").val( $("#pname-"+idx).text() );
+    $("#return-rname").val( $("#rname-"+idx).text() );
     $("#rent").css("display","block");
-    pageBlur();
+    // pageBlur();
 
   }
 
   // 가능 Div load
   function possibleDivload(idx){
+    $("#rent-pname").val( $("#pname-"+idx).text() );
     $("#return").css("display","block");
-    pageBlur();
-
+    // pageBlur();
   }
 
   // Rent Div에서 버튼 눌렀을때
   function rentSubmit(){
+    changeTable(1);
 
   }
 
   // Return Div에서 버튼 눌렀을때
   function returnSubmit(){
+    changeTable(0);
 
   }
 

@@ -53,15 +53,15 @@
         <table>
           <tr>
             <td>물품명</td>
-            <td><input type="text" style="width:11em;" id="rent-name" disabled ></td>
+            <td><input type="text" style="width:11em;" id="rent-pname" disabled ></td>
           </tr>
           <tr>
             <td>대여자</td>
-            <td><input type="text" style="width:11em;" placeholder="대여자" id="rent-person" required></td>
+            <td><input type="text" style="width:11em;" placeholder="대여자" id="rent-rname" required></td>
           </tr>
           <tr>
             <td>대여기간</td>
-            <td><input type="date" style="width:11em;" id="date" required></td>
+            <td><input type="date" style="width:11em;" id="rent-date" required></td>
           </tr>
           <tr>
             <td>비밀번호</td>
@@ -82,19 +82,19 @@
         <table>
           <tr>
             <td>물품명</td>
-            <td><input type="text" style="width:11em;" disabled></td>
+            <td><input type="text" style="width:11em;" disabled id="return-pname"></td>
           </tr>
           <tr>
             <td>대여자</td>
-            <td><input type="text" style="width:11em;" placeholder="대여자"></td>
+            <td><input type="text" style="width:11em;" placeholder="대여자" id="return-rname"></td>
           </tr>
           <tr>
             <td>비밀번호</td>
-            <td><input type="password" style="width:11em;"></td>
+            <td><input type="password" style="width:11em;" id="return-pw"></td>
           </tr>
           <tr>
             <td colspan="2">
-              <input type="submit" class="bttn-simple bttn-md bttn-retu" value="반납">
+              <input type="submit" class="bttn-simple bttn-md bttn-retu" value="반납" id="return-btn">
             </td>
           </tr>
         </table>

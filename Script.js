@@ -116,18 +116,21 @@ $(document).ready(function() {
 
   // 불가 Div load
   function impossibleDivload(idx){
-    $("#return-pname").val( $("#pname-"+idx).text() );
-    $("#return-rname").val( $("#rname-"+idx).text() );
-    $("#rent").css("display","block");
-    // pageBlur();
-
+    if($("#rent").css("display")!="block"){
+      $("#return-pname").val( $("#pname-"+idx).text() );
+      $("#return-rname").val( $("#rname-"+idx).text() );
+      $("#return").css("display","block");
+      // pageBlur();
+    }
   }
 
   // 가능 Div load
   function possibleDivload(idx){
-    $("#rent-pname").val( $("#pname-"+idx).text() );
-    $("#return").css("display","block");
-    // pageBlur();
+    if($("#return").css("display")!="block"){
+      $("#rent-pname").val( $("#pname-"+idx).text() );
+      $("#rent").css("display","block");
+      // pageBlur();
+    }
   }
 
   // Rent Div에서 버튼 눌렀을때
@@ -142,6 +145,29 @@ $(document).ready(function() {
 
   }
 
+  // Rent Div에서 Cancel 버튼 눌렀을때
+  function rentCancel(){
+    $("#rent").css("display","none");
+    $("#rent-pname").val("");
+  }
+
+  // Return Div에서 Cancel 버튼 눌렀을때
+  function returnCancel(){
+    $("#return").css("display","none");
+    $("#return-pname").val("");
+    $("#return-rname").val("");
+  }
+
+  // 관리자 페이지로 이동
+  function moveToAdmin(){
+    var adminPage = window.open("http://35.188.153.88/Ahn/manager.html", '_blank');
+    // 링크 경로에 맞춰서 수정해야함
+		adminPage.focus();
+  }
+
   $("#rent-btn").click(rentSubmit);
   $("#return-btn").click(returnSubmit);
+  $("#rent-cancel").click(rentCancel);
+  $("#return-cancel").click(returnCancel);
+  $("#login").click(moveToAdmin);
 });

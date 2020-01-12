@@ -8,7 +8,10 @@ body{
 }
 
 #logo{
-  vertical-align: middle;
+  vertical-align: top;
+  width: 7em;
+  margin-left: 0.05em;
+  margin-right: 0.1em;
 }
 
 /* 메뉴바 */
@@ -25,8 +28,8 @@ div.menu a{
   font: 1.5em Raleway;
   font-weight: bold;
   letter-spacing: 0.07em;
-  margin: 0.2em 0.4em;
-  padding: 0.4em 0.4em;
+  margin: 0.1em 0.1em;
+  padding: 0.3em 0.1em;
   position: relative;
   z-index: 0;
   cursor: pointer;
@@ -50,10 +53,8 @@ div.pullUp a:hover:before{
 /* 물품 목록 */
 .home2 #goods table{
   margin: 0.4em 0;
-  /* border-top: 5px double white;
-  border-bottom: 5px double white; */
   width: 100%;
-  font-size: 0.95em;
+  font-size: 0.9em;
 }
 .home2 #goods table th{
   background: #ffbd59;
@@ -100,12 +101,12 @@ div.pullUp a:hover:before{
   font-family: inherit;
   padding: 0.3em 0.5em;
 }
-/* 대여버튼 */
-.bttn-rent{
+/* 불가버튼 */
+.bttn-no{
   background-color: #ED7D31;
 }
-/* 반납버튼 */
-.bttn-retu{
+/* 가능버튼 */
+.bttn-yes{
   background-color: #70AD47;
 }
 
@@ -115,8 +116,12 @@ div.pullUp a:hover:before{
   display: none;
 
   background: #FCF9EA;
-  padding: 1.2em;
+  padding: 1.2em 1.2em 0.3em 1.2em;
   text-align: center;
+
+  border-radius: 0.5em;
+  border: 0.1em solid rgb(255, 189, 89, 0.2);
+  box-shadow: 0 0 1em 0.4em rgb(255, 189, 89, 0.25);
 }
 #rent table{
   display: inline-block;
@@ -135,8 +140,12 @@ div.pullUp a:hover:before{
   display: none;
 
   background: #FCF9EA;
-  padding: 1.2em;
+  padding: 1.2em 1.2em 0.3em 1.2em;
   text-align: center;
+
+  border-radius: 0.5em;
+  border: 0.1em solid rgb(255, 189, 89, 0.2);
+  box-shadow: 0 0 1em 0.4em rgb(255, 189, 89, 0.25);
 }
 #return table{
   display: inline-block;
@@ -151,7 +160,7 @@ div.pullUp a:hover:before{
 }
 
 /* 관리자 로그인 */
-#manage{
+/* #manage{
   display: none;
 
   background: #FCF9EA;
@@ -179,15 +188,20 @@ div.pullUp a:hover:before{
 }
 #manage table td[colspan="2"]{
   text-align: right;
+} */
+#temp{
+  display: inline-block;
 }
 .bttn-mlogin{
   letter-spacing: normal;
   background: #ffbd59;
-  width: 6.5em;
+  width: 2.5em;
+  vertical-align: top;
+  /* display: inline-block; */
 
   text-align: right;
   background-image: url('img/key.png');
-  background-position:  0.6em 0.2em;
+  background-position:  0.5em 0.2em;
   background-repeat: no-repeat;
   border: 0;
   outline: 0;

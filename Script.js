@@ -118,7 +118,7 @@ $(document).ready(function() {
   function impossibleDivload(idx){
     $("#return-pname").val( $("#pname-"+idx).text() );
     $("#return-rname").val( $("#rname-"+idx).text() );
-    $("#rent").css("display","block");
+    $("#return").css("display","block");
     // pageBlur();
 
   }
@@ -126,8 +126,9 @@ $(document).ready(function() {
   // 가능 Div load
   function possibleDivload(idx){
     $("#rent-pname").val( $("#pname-"+idx).text() );
-    $("#return").css("display","block");
+    $("#rent").css("display","block");
     // pageBlur();
+
   }
 
   // Rent Div에서 버튼 눌렀을때
@@ -142,6 +143,22 @@ $(document).ready(function() {
 
   }
 
+  // Rent Div에서 Cancel 버튼 눌렀을때
+  function rentCancel(){
+    $("#rent").css("display","none");
+    $("#rent-pname").val("");
+  }
+
+  // Return Div에서 Cancel 버튼 눌렀을때
+  function returnCancel(){
+    $("#return").css("display","none");
+    $("#return-pname").val("");
+    $("#return-rname").val("");
+  }
+
   $("#rent-btn").click(rentSubmit);
   $("#return-btn").click(returnSubmit);
+  $("#rent-cancel").click(rentCancel);
+  $("#return-cancel").click(returnCancel);
+
 });

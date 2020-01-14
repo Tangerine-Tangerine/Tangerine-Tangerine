@@ -85,12 +85,9 @@ footer{
   text-align: right;
 }
 
-#ex{
-  display: none;
-}
 /* 로그인 후, 표 나오는 페이지 */
 #logged{
-  /* display: none; */
+  display: none;
 }
 #logo{
   vertical-align: middle;

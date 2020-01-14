@@ -55,15 +55,22 @@ div.pullUp a:hover:before{
   display: none;
 }
 .home2 #goods table{
+  border-top:0.3em double #ffbd59;
+  border-bottom: 0.3em double #ffbd59;
+  padding: 0.5em 0.2em;
+
+  border-collapse: separate;
   margin: 0.4em 0;
+  margin-top: 1em;
   width: 100%;
-  font-size: 0.9em;
+  font-size: 0.8em;
+  border-spacing: 0.2em;
 }
 .home2 #goods table th{
   background: #ffbd59;
   border-radius: 0.5em;
+  padding: 0.5em;
   text-align: center;
-  padding: 0.3em;
 }
 .home2 #goods table td{
   background-color: rgba(255, 255, 255, 0.7);
@@ -111,6 +118,28 @@ div.pullUp a:hover:before{
 /* 가능버튼 */
 .bttn-yes{
   background-color: #70AD47;
+}
+
+/* 검색창 */
+#srch{
+  background: #FCF9EA;
+  color: black;
+  border: 0.1em solid rgb(255, 189, 89, 0.2);
+  border-radius: 0.2em;
+  outline-color: #ffbd59;
+  width: 19em;
+  margin-right: 0.5em;
+}
+#srch:focus, #srch:hover, .bttn-srch:hover{
+  box-shadow: 0 0 0.4em 0.3em rgb(255, 189, 89, 0.25);
+}
+.bttn-srch{
+  color: black;
+  background: #FCF9EA;
+  outline-color: #ffbd59;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+  border: 0.1em solid rgb(255, 189, 89, 0.2);
 }
 
 /* 추가 div */

@@ -25,7 +25,7 @@ $(document).ready(function() {
         else if(url_idx_string.substring(0,1)=="0"){
           idx = Number(url_idx_string.substring(1,2));
         }
-        else if(url_idx_sting=="000"){
+        else if(url_idx_string=="000"){
           idx = Number(0);
         }
         if($("#btn-"+idx).attr("value")=="가능"){
@@ -348,3 +348,26 @@ $(document).ready(function() {
   $("#btn-search").click(searchTable);
   $("#Main").click(revertTable);
 });
+
+// qr 코드 눌렀을때
+function openQRCamera(node) {
+  var reader = new FileReader();
+  reader.onload = function() {
+    node.value = "";
+    qrcode.callback = function(res) {
+      if(res instanceof Error) {
+        alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
+      } else {
+        if(res != ""){
+          location.href=res;
+        }
+      }
+    };
+    qrcode.decode(reader.result);
+  };
+  reader.readAsDataURL(node.files[0]);
+}
+
+function showQRIntro() {
+  return confirm("Use your camera to take a picture of a QR code.");
+}

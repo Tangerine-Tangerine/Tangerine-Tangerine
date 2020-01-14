@@ -2,10 +2,15 @@
 @import 'https://fonts.googleapis.com/css?family=Raleway';
 
 body{
-  background-color: #13292a;
+  background-color: #1f2124;
   text-align: center;
   vertical-align: center;
   font-family: 'Nanum Gothic', sans-serif;
+}
+
+footer{
+  position: absolute;
+  bottom: 1.3em;
 }
 
 /* 버튼 */
@@ -40,6 +45,14 @@ body{
   position: relative;
   font-family: inherit;
   padding: 0.3em 0.5em;
+}
+/* 불가버튼 */
+.bttn-no{
+  background-color: #ED7D31;
+}
+/* 가능버튼 */
+.bttn-yes{
+  background-color: #70AD47;
 }
 
 /* 로그인 버튼 */
@@ -108,6 +121,7 @@ body{
   vertical-align: middle;
 }
 .mbtn{
+  cursor: pointer;
   color:#999;
   font-size: 1.2em;
   font-weight: bold;
@@ -116,6 +130,7 @@ body{
   text-decoration:none;
   border-radius: 0;
   padding: 0.3em 0.5em;
+  border-bottom: 0.1em dotted #999;
 }
 .mbtn:hover{
   border:none;
@@ -134,16 +149,43 @@ body{
   font-size: 0.8em;
   color: #13292a;
 }
+.bttn-logout:hover{
+  box-shadow: 0 0 0.7em 0.2em rgb(255, 189, 89, 0.3);
+}
+
+/* 검색창 */
+#srch{
+  background: #383a3f;
+  color: white;
+  border: 0.1em solid rgb(255, 189, 89, 0.2);
+  border-radius: 0.2em;
+  outline-color: #ffbd59;
+  width: 19em;
+  margin-right: 0.5em;
+}
+#srch:focus, #srch:hover, .bttn-srch:hover{
+  box-shadow: 0 0 0.4em 0.3em rgb(255, 189, 89, 0.2);
+}
+.bttn-srch{
+  background: #383a3f;
+  outline-color: #ffbd59;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+  border: 0.1em solid rgb(255, 189, 89, 0.2);
+}
 
 /* 물품 목록 */
-#goods{
+#goods table{
   border-top: 3px double #ffbd59;
   border-bottom: 3px double #ffbd59;
-}
-#goods table{
+  padding: 0.5em 0.2em;
+
+  border-collapse: separate;
   margin: 0.4em 0;
+  margin-top: 1em;
   width: 100%;
-  font-size: 0.9em;
+  font-size: 0.8em;
+  border-spacing: 0.2em;
 }
 #goods table th{
   background: #ffbd59;
@@ -156,10 +198,14 @@ body{
   border-radius: 0.5em;
 }
 
+/* 물품 추가 div */
 #qrcreate{
   margin-top: 8%;
   border-radius: 0.5em;
   background: #324142;
+  background: #383a3f;
+  text-align: center;
+
   font-weight: bold;
   letter-spacing: 0.1em;
   padding: 1em;
@@ -183,15 +229,17 @@ body{
 }
 /* create 버튼 */
 .bttn-create{
-  background: #39DB92;
-  color: #13292a;
+  background: #A593E0;
+  color: black;
   font-weight: bold;
   letter-spacing: 0.07em;
 }
 /* 물품 추가 버튼 */
 .bttn-add{
-  background: #39DB92;
-  color: #13292a;
+  background: #A593E0;
+  color: black;
   font-weight: bold;
   margin-top: 1em;
+  margin-left: 6.5em;
+  margin-left: 35%;
 }

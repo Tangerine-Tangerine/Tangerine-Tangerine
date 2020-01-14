@@ -51,6 +51,9 @@ div.pullUp a:hover:before{
 }
 
 /* 물품 목록 */
+#total_Page{
+  display: none;
+}
 .home2 #goods table{
   border-top:0.3em double #ffbd59;
   border-bottom: 0.3em double #ffbd59;

@@ -16,11 +16,23 @@
   <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap&subset=korean" rel="stylesheet">
 
   <link  href="TangerineCss.css" rel="stylesheet">
+  <link rel="stylesheet" href="load.css">
   <title>Tangerine-Tangerine</title>
 </head>
 <body>
+  <div  class="container">
+    <div class="row">
+      <div id="loadPage" class="col-xs-12 col-md-12">
+        <div id="dot"></div>
+        <div class="step" id="s1"></div>
+        <div class="step" id="s2"></div>
+        <div class="step" id="s3"></div>
+      </div>
+    </div>
+  </div>
 
-  <div class="container home2">
+
+  <div class="container home2" id="total_Page">
     <!-- 메뉴바 -->
     <div class="row">
       <div class="menu pullUp col-xs-12 col-md-12">
@@ -62,6 +74,7 @@
     <!-- 대여 버튼 눌렀을때 -->
     <div class="row">
       <div id="rent" class="col-xs-9 col-xs-offset-1 col-sm-6 col-md-3 col-md-offset-4">
+        <input type="hidden" id="rent_hidden" value="">
         <table>
           <tr>
             <td>물품명</td>
@@ -91,6 +104,7 @@
 
     <!-- 반납 버튼 눌렀을때 -->
     <div class="row">
+      <input type="hidden" id="return_hidden" value="">
       <div id="return" class="col-xs-9 col-xs-offset-1 col-sm-6 col-md-3 col-md-offset-4">
         <table>
           <tr>

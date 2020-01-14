@@ -212,7 +212,7 @@ div.pullUp a:hover:before{
 }
 #manage td{
   text-align: left;
-  font-weight: bold;
+  font-weight: bold;s
   font-family: "Courier New", serif;
   color: #E3AC53;
 
@@ -237,4 +237,8 @@ div.pullUp a:hover:before{
   background-repeat: no-repeat;
   border: 0;
   outline: 0;
+}
+
+#search{
+  display : none;
 }

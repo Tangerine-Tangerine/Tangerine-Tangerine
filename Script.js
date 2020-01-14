@@ -2,6 +2,7 @@
 document.getElementById('rent-date').value = new Date().toISOString().substring(0, 10);
 $(document).ready(function() {
   var memberList = new Array();
+  var listCount = 0;
   parseURL();
 
   //URL 파싱
@@ -54,6 +55,7 @@ $(document).ready(function() {
       url: "data/Data.json",
       success: function(result) {
         for(var i=0; i<result.length; i++){
+          listCount++;
           var loadTr = $('<tr />', {
             id : "line-" + i
           });
@@ -293,9 +295,56 @@ $(document).ready(function() {
 		adminPage.focus();
   }
 
+  // Search Div Load
+  function searchClicked(){
+    if( $("#search").css("display") == "none" ){
+      $("#search").css("display","block");
+    }
+    else{
+      $("#search").val("");
+      $("#search").css("display","none");
+    }
+  }
+
+  // Search function
+  function searchTable(){
+    for(var i=0; i<listCount; i++){
+      var findKeyWord = false;
+      var keyword = String($("#srch").val());
+
+      if( $("#index-"+i).text().match(keyword) ){
+        findKeyWord = true;
+      }
+      if( $("#cat-"+i).text().match(keyword) ){
+        findKeyWord = true;
+      }
+      if( $("#pname-"+i).text().match(keyword) ){
+        findKeyWord = true;
+      }
+      if( $("#rname-"+i).text().match(keyword) ){
+        findKeyWord = true;
+      }
+      if(findKeyWord==false){
+        $("#line-"+i).css("display","none");
+      }
+    }
+  }
+
+  // Search 결과 되돌리기
+  function revertTable(){
+    for(var i=0; i<listCount; i++){
+      if($("#line-"+i).css("display")=="none")
+      $("#line-"+i).css("display","");
+    }
+    searchClicked();
+  }
+
   $("#rent-btn").click(rentSubmit);
   $("#return-btn").click(returnSubmit);
   $("#rent-cancel").click(rentCancel);
   $("#return-cancel").click(returnCancel);
   $("#login").click(moveToAdmin);
+  $("#Info").click(searchClicked);
+  $("#btn-search").click(searchTable);
+  $("#Main").click(revertTable);
 });

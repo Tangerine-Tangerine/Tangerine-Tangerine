@@ -292,7 +292,7 @@ $(document).ready(function() {
   function moveToAdmin(){
     var adminPage = window.open("http://35.188.153.88/Ahn/manager.html", '_blank');
     // 링크 경로에 맞춰서 수정해야함
-		adminPage.focus();
+    adminPage.focus();
   }
 
   // Search Div Load
@@ -339,6 +339,7 @@ $(document).ready(function() {
     searchClicked();
   }
 
+
   $("#rent-btn").click(rentSubmit);
   $("#return-btn").click(returnSubmit);
   $("#rent-cancel").click(rentCancel);
@@ -347,6 +348,7 @@ $(document).ready(function() {
   $("#Info").click(searchClicked);
   $("#btn-search").click(searchTable);
   $("#Main").click(revertTable);
+
 });
 
 // qr 코드 눌렀을때
@@ -360,6 +362,7 @@ function openQRCamera(node) {
       } else {
         if(res != ""){
           location.href=res;
+          location.reload();
         }
       }
     };

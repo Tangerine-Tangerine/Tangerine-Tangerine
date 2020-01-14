@@ -191,36 +191,6 @@ div.pullUp a:hover:before{
   text-align: right;
 }
 
-/* 관리자 로그인 */
-/* #manage{
-  display: none;
-
-  background: #FCF9EA;
-  padding: 1.2em;
-  text-align: center;
-}
-#manage img{
-  display: inline-block;
-  width:15em;
-}
-#manage caption{
-  text-align: center;
-}
-#manage table{
-  display: inline-block;
-  text-align: center;
-}
-#manage td{
-  text-align: left;
-  font-weight: bold;s
-  font-family: "Courier New", serif;
-  color: #E3AC53;
-
-  padding: 0.2em 0.4em;
-}
-#manage table td[colspan="2"]{
-  text-align: right;
-} */
 #temp{
   display: inline-block;
 }

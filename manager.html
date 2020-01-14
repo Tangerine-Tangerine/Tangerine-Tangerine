@@ -22,7 +22,7 @@
     <div class="row">
       <div id="manage" class="col-xs-12 col-md-12">
         <table id="homeT">
-          <caption> <img src="img/tangerine_b.png"></caption>
+          <caption> <img src="./img/tangerine_b.png"></caption>
           <tr>
             <td>Username</td>
             <td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td colspan="2">
-              <input type="submit" id="login" class="bttn-simple bttn-md bttn-mlogin" name="login" value="login">
+              <input type="submit" id="btn-login" class="bttn-simple bttn-md bttn-mlogin" name="login" value="login">
             </td>
           </tr>
         </table>
@@ -50,7 +50,7 @@
     <!-- 메뉴바 -->
     <div class="row">
       <div id="menu" class="col-xs-12 col-md-12">
-        <img id="logo" src="./img/TanLogo.png">
+        <!-- <img id="logo" src="./img/TanLogo.png"> -->
         <a class="mbtn">Main</a>
         <a class="mbtn">Add</a>
         <a class="mbtn">Delete</a>
@@ -60,9 +60,9 @@
     </div>
 
     <!--search 누를 경우 검색창  -->
-    <div class="row">
-      <input type="text" >
-      <button>검색</button>
+    <div class="row" id="search">
+      <input type="text" id="srch">
+      <button class="bttn-simple bttn-md bttn-srch">검색</button>
     </div>
 
     <!-- 대여 물품 목록표 -->
@@ -100,6 +100,7 @@
           <tr>
             <td colspan="2">
               <button id="createBtn" class="bttn-simple bttn-md bttn-create">create</button>
+              <button>취소</button>
             </td>
           </tr>
         </table>
@@ -111,6 +112,10 @@
         <button id="add" class="bttn-simple bttn-md bttn-add">물품 추가</button>
       </div>
     </div>
+
+    <footer>
+      <img id="logo" src="./img/tantan.png">
+    </footer>
 
   </div> <!-- 전체 div 끝 -->
 

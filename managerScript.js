@@ -1,5 +1,6 @@
 $("#add").css("display","none");
 $(document).ready(function(){
+  loadTable();
   var manager_ID = "";
 
   $("#save").css("display","none");
@@ -53,7 +54,7 @@ $(document).ready(function(){
   }
 
   // Data Table load
-  function tableLoad(){
+  function loadTable(){
     $.ajax({
       url: "data/Data.json",
       success: function(result) {

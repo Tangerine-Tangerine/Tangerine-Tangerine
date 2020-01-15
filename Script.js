@@ -23,7 +23,7 @@ $(document).ready(function() {
           idx = Number(url_idx_string.substring(2,3));
         }
         else if(url_idx_string.substring(0,1)=="0"){
-          idx = Number(url_idx_string.substring(1,2));
+          idx = Number(url_idx_string.substring(1,3));
         }
         else if(url_idx_string=="000"){
           idx = Number(0);
@@ -150,7 +150,7 @@ $(document).ready(function() {
         alert("비밀번호는 5자리 이상으로 해주세요");
         uploadOk = false;
       } else {
-        uploadOk = true;
+        uploadOk  = true;
       }
     }
     else{
@@ -308,7 +308,7 @@ $(document).ready(function() {
       $("#search").css("display","block");
     }
     else{
-      $("#search").val("");
+      $("#srch").val("");
       $("#search").css("display","none");
     }
   }
@@ -350,9 +350,10 @@ $(document).ready(function() {
   // Main Clicked
   function mainClicked(){
     revertTable();
-    $("#search").val("");
+    $("#srch").val("");
     $("#search").css("display","none");
   }
+
 
   $("#rent-btn").click(rentSubmit);
   $("#return-btn").click(returnSubmit);
@@ -374,7 +375,7 @@ function openQRCamera(node) {
         alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
       } else {
         if(res != ""){
-          location.href = res;
+          location.href=res;
           location.reload();
         }
       }

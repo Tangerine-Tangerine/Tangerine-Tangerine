@@ -354,7 +354,6 @@ $(document).ready(function() {
     $("#search").css("display","none");
   }
 
-
   $("#rent-btn").click(rentSubmit);
   $("#return-btn").click(returnSubmit);
   $("#rent-cancel").click(rentCancel);
@@ -375,7 +374,7 @@ function openQRCamera(node) {
         alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
       } else {
         if(res != ""){
-          location.href=res;
+          location.href = res;
           location.reload();
         }
       }

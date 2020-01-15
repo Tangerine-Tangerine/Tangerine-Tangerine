@@ -140,11 +140,18 @@ $(document).ready(function() {
 
   // Table 변경시 함수
   function changeTable(inputRent,idx) {
+    var uploadOk = false;
     if(inputRent==1){
       var start_date = getDateFormat();
       var end_date = DateFormatChange($("#rent-date").val());
       var rname = $("#rent-rname").val();
       var rent_pw = $("#rent-pw").val();
+      if(String(rent_pw).length<5){
+        alert("비밀번호는 5자리 이상으로 해주세요");
+        uploadOk = false;
+      } else {
+        uploadOk = true;
+      }
     }
     else{
       var return_pw = $("#return-pw").val();
@@ -153,7 +160,7 @@ $(document).ready(function() {
     $.ajax({
       url: "data/Data.json",
       success: function(result) {
-        if(inputRent==1 && memberCheck(rname)==true){
+        if(inputRent==1 && memberCheck(rname)==true && uploadOk==true){
           var newArray = result;
           newArray[idx][3] = rname;
           newArray[idx][4] = start_date;

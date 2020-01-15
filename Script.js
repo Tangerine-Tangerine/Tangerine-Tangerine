@@ -140,11 +140,18 @@ $(document).ready(function() {
 
   // Table 변경시 함수
   function changeTable(inputRent,idx) {
+    var uploadOk = false;
     if(inputRent==1){
       var start_date = getDateFormat();
       var end_date = DateFormatChange($("#rent-date").val());
       var rname = $("#rent-rname").val();
       var rent_pw = $("#rent-pw").val();
+      if(String(rent_pw).length<5){
+        alert("비밀번호는 5자리 이상으로 해주세요");
+        uploadOk = false;
+      } else {
+        uploadOk = true;
+      }
     }
     else{
       var return_pw = $("#return-pw").val();
@@ -153,7 +160,7 @@ $(document).ready(function() {
     $.ajax({
       url: "data/Data.json",
       success: function(result) {
-        if(inputRent==1 && memberCheck(rname)==true){
+        if(inputRent==1 && memberCheck(rname)==true && uploadOk==true){
           var newArray = result;
           newArray[idx][3] = rname;
           newArray[idx][4] = start_date;
@@ -290,7 +297,7 @@ $(document).ready(function() {
 
   // 관리자 페이지로 이동
   function moveToAdmin(){
-    var adminPage = window.open("http://35.188.153.88/Ahn/manager.html", '_blank');
+    var adminPage = window.open("http://34.87.29.227/Ahn/manager.html", '_blank');
     // 링크 경로에 맞춰서 수정해야함
     adminPage.focus();
   }
@@ -308,6 +315,7 @@ $(document).ready(function() {
 
   // Search function
   function searchTable(){
+    revertTable();
     for(var i=0; i<listCount; i++){
       var findKeyWord = false;
       var keyword = String($("#srch").val());
@@ -328,6 +336,7 @@ $(document).ready(function() {
         $("#line-"+i).css("display","none");
       }
     }
+    $("#search").val("");
   }
 
   // Search 결과 되돌리기
@@ -336,7 +345,13 @@ $(document).ready(function() {
       if($("#line-"+i).css("display")=="none")
       $("#line-"+i).css("display","");
     }
-    searchClicked();
+  }
+
+  // Main Clicked
+  function mainClicked(){
+    revertTable();
+    $("#search").val("");
+    $("#search").css("display","none");
   }
 
   $("#rent-btn").click(rentSubmit);
@@ -346,8 +361,7 @@ $(document).ready(function() {
   $("#login").click(moveToAdmin);
   $("#Info").click(searchClicked);
   $("#btn-search").click(searchTable);
-  $("#Main").click(revertTable);
-
+  $("#Main").click(mainClicked);
 });
 
 // qr 코드 눌렀을때

@@ -1,5 +1,7 @@
 $("#add").css("display","none");
 $(document).ready(function(){
+  loadTable();
+  var listCount = 0;
   var manager_ID = "";
 
   $("#save").css("display","none");
@@ -53,11 +55,12 @@ $(document).ready(function(){
   }
 
   // Data Table load
-  function tableLoad(){
+  function loadTable(){
     $.ajax({
       url: "data/Data.json",
       success: function(result) {
         for(var i=0; i<result.length; i++){
+          listCount++;
           var loadTr = $('<tr />', {
             id : "line-" + i
           });
@@ -122,5 +125,125 @@ $(document).ready(function(){
 
   }
 
+  // Add 메뉴 클릭
+  function addClicked(){
+    if($("#qrcreate").css("display")=="none"){
+      $("#qrcreate").css("display","block");
+    }
+  }
+
+  // Add 취소
+  function addCancel(){
+    $("#qrcreate").css("display","none");
+    $("#m_title").val("");
+    $("#m_number").val("");
+    $("#m_group").val("");
+  }
+
+  // Add Submit
+  function addSubmit(){
+    var input_title = $("#m_title").val();
+    var input_group = $("#m_group").val();
+
+    $.ajax({
+      url : "data/Data.json",
+      success : function(result){
+        var newArr = new Array();
+        newArr = result;
+        var newArr_part = new Array();
+        newArr_part.push(result.length);
+        newArr_part.push(input_group);
+        newArr_part.push(input_title);
+        newArr_part.push("-");
+        newArr_part.push("-");
+        newArr_part.push("-");
+        newArr_part.push(1);
+        newArr_part.push("-");
+        newArr.push(newArr_part);
+        var sendFile = JSON.stringify(newArr);
+        $.ajax({
+          url : "uploads.php",
+          type : 'POST',
+          data : { sendFile : sendFile },
+          error : function() { alert("uploads error"); }
+        });
+        listCount++;
+        alert("물품 생성이 완료되었습니다.");
+        reloadTable();
+        addCancel();
+      },
+      error : function(){
+        alert("물품 데이터를 찾을 수 없습니다.");
+      }
+    });
+  }
+
+  // Table reload
+  function reloadTable(){
+    for(var i=0; i<listCount; i++){
+      $("#line-"+i).remove();
+    }
+    loadTable();
+  }
+
+  // Search Div Load
+  function searchClicked(){
+    if( $("#search").css("display") == "none" ){
+      $("#search").css("display","block");
+    }
+    else{
+      $("#search").val("");
+      $("#search").css("display","none");
+    }
+  }
+
+  // Search function
+  function searchTable(){
+    revertTable();
+    for(var i=0; i<listCount; i++){
+      var findKeyWord = false;
+      var keyword = String($("#srch").val());
+
+      if( $("#index-"+i).text().match(keyword) ){
+        findKeyWord = true;
+      }
+      if( $("#cat-"+i).text().match(keyword) ){
+        findKeyWord = true;
+      }
+      if( $("#pname-"+i).text().match(keyword) ){
+        findKeyWord = true;
+      }
+      if( $("#rname-"+i).text().match(keyword) ){
+        findKeyWord = true;
+      }
+      if(findKeyWord==false){
+        $("#line-"+i).css("display","none");
+      }
+    }
+    $("#search").val("");
+  }
+
+  // Search 결과 되돌리기
+  function revertTable(){
+    for(var i=0; i<listCount; i++){
+      if($("#line-"+i).css("display")=="none")
+      $("#line-"+i).css("display","");
+    }
+  }
+
+  // Main Clicked
+  function mainClicked(){
+    revertTable();
+    $("#search").val("");
+    $("#search").css("display","none");
+    addCancel();
+  }
+
+  $("#btn-addCancel").click(addCancel);
   $("#btn-login").click(loginSubmit);
+  $("#btn-add").click(addClicked);
+  $("#btn-main").click(mainClicked);
+  $("#btn-search").click(searchClicked);
+  $("#srch").click(searchTable);
+  $("#add").click(addSubmit);
 });

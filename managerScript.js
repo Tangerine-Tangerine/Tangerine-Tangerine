@@ -12,7 +12,7 @@ $(document).ready(function(){
     var m_group = $('#m_group').val();
 
     // var m_url="http://168.188.7.186/Tangerine/load.html#";
-    var m_url="http://35.188.153.88/Tangerine-Tangerine/load.html#";
+    var m_url="http://34.87.29.227/sohui/main.html#";
 
     // encodeURIComponent로 인코딩
 

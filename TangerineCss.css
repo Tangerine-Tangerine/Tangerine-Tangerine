@@ -50,6 +50,10 @@ div.pullUp a:hover:before{
   height: 90%;
 }
 
+#search{
+  display : none;
+}
+
 /* 물품 목록 */
 #total_Page{
   display: none;
@@ -199,7 +203,6 @@ div.pullUp a:hover:before{
   background: #ffbd59;
   width: 2.5em;
   vertical-align: top;
-  /* display: inline-block; */
 
   text-align: right;
   background-image: url('img/key.png');
@@ -207,8 +210,4 @@ div.pullUp a:hover:before{
   background-repeat: no-repeat;
   border: 0;
   outline: 0;
-}
-
-#search{
-  display : none;
 }

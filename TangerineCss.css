@@ -12,6 +12,7 @@ body{
   width: 7em;
   margin-left: 0.05em;
   margin-right: 0.1em;
+  padding-top: 0.4em;
 }
 
 /* 메뉴바 */
@@ -238,7 +239,8 @@ div.pullUp a:hover:before{
   letter-spacing: normal;
   background: #ffbd59;
   width: 2.5em;
-  vertical-align: top;
+  vertical-align: bottom;
+  margin-bottom: 0.4em;
 
   text-align: right;
   background-image: url('img/key.png');

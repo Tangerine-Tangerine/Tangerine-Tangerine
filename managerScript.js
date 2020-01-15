@@ -1,8 +1,9 @@
 $("#add").css("display","none");
 $(document).ready(function(){
-  loadTable();
   var listCount = 0;
   var manager_ID = "";
+  loadTable();
+  getCookie();
 
   $("#save").css("display","none");
   $('#createBtn').click(function(){
@@ -31,7 +32,6 @@ $(document).ready(function(){
     // 이미지가 나타날 영역에 원하는 내용을 넣은 QR code의 이미지를 출력
     $('#qrcode').attr('src', googleQRUrl+m_url+m_number+'_'+m_group+'&choe=UTF-8');
     $("#add").css("display","block");
-
   });
 
   // Login Submit시 함수
@@ -45,6 +45,7 @@ $(document).ready(function(){
           if(list[i][0]==input_id && list[i][1]==input_pw){
             manager_ID = input_id;
             loginSuccess();
+            makeCookie(input_id);
           }
         }
       },
@@ -56,6 +57,65 @@ $(document).ready(function(){
   function loginSuccess(){
     $("#manage").css("display","none");
     $("#logged").css("display","block");
+  }
+
+  // Cookie 생성
+  function makeCookie(inputID){
+    document.cookie = "idCookie" + '=' + inputID;
+  }
+
+  // Cookie 가져오기
+  function getCookie(){
+    var value = String(document.cookie);
+    if(value.length > 3){
+      manager_ID = value.split('-')[1];
+      loginSuccess();
+    }
+  }
+
+  // Button Click 함수
+  function tableBtnClicked(obj){
+    var objId = $(obj).attr("id");
+    var idxArr = objId.split("-");
+    var idx = Number(idxArr[1]);
+
+    if($(obj).val()=="대여"){
+      alert("현재 대여중인 물품은 삭제할 수 없습니다.")
+    } else{
+      deleteLine(idx);
+    }
+  }
+
+  // Delete function
+  function deleteLine(idx){
+    var newArray = new Array();
+    $.ajax({
+      url : "data/Data.json",
+      success : function(result) {
+        newArray = result;
+        for(var i=idx; i<newArray.length; i++){
+          newArray[i][0] = newArray[i][0] - 1;
+        }
+        newArray.splice(idx,1);
+        var sendFile = JSON.stringify(newArray);
+        $("#line-"+idx).remove();
+        $.ajax({
+          url : "uploads.php",
+          type : 'POST',
+          data : { sendFile : sendFile },
+          success : function() {
+            clearTable();
+            loadTable();
+          },
+          error : function() {
+            alert("upload error");
+          }
+        });
+      },
+      error : function() { alert("데이터 파일을 찾을 수 없습니다."); }
+    });
+    alert("물품 삭제가 완료되었습니다");
+
   }
 
   // Data Table load
@@ -103,7 +163,7 @@ $(document).ready(function(){
           if(result[i][6]==0) { // 대여여부 0이면 대여중
             var btn = $('<input />', {
               type : "button",
-              value : "불가",
+              value : "대여",
               id : "btn-"+i,
               class : "bttn-simple bttn-md bttn-no",
               click : function() { tableBtnClicked(this); }
@@ -112,7 +172,7 @@ $(document).ready(function(){
           else {            // 대여여부 1이면 대여가능
             var btn = $('<input />', {
               type : "button",
-              value : "가능",
+              value : "삭제",
               id : "btn-"+i,
               class : "bttn-simple bttn-md bttn-yes",
               click : function() { tableBtnClicked(this); }
@@ -126,7 +186,6 @@ $(document).ready(function(){
       },
       error : function(result) { alert("저장된 물품 데이터가 없습니다."); }
     });
-
   }
 
   // Add 메뉴 클릭
@@ -172,11 +231,13 @@ $(document).ready(function(){
           url : "uploads.php",
           type : 'POST',
           data : { sendFile : sendFile },
+          success : function() {
+            clearTable();
+            loadTable();
+          },
           error : function() { alert("uploads error"); }
         });
-        listCount++;
         alert("물품 생성이 완료되었습니다.");
-        reloadTable();
         addCancel();
       },
       error : function(){
@@ -187,12 +248,13 @@ $(document).ready(function(){
     $('#add').css("display","none");
   }
 
-  // Table reload
-  function reloadTable(){
+  // Table Clear
+  function clearTable(){
     for(var i=0; i<listCount; i++){
       $("#line-"+i).remove();
+      console.log("remove line"+i);
     }
-    loadTable();
+    listCount = 0;
   }
 
   // Search Div Load

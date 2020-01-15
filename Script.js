@@ -23,7 +23,7 @@ $(document).ready(function() {
           idx = Number(url_idx_string.substring(2,3));
         }
         else if(url_idx_string.substring(0,1)=="0"){
-          idx = Number(url_idx_string.substring(1,2));
+          idx = Number(url_idx_string.substring(1,3));
         }
         else if(url_idx_string=="000"){
           idx = Number(0);

@@ -7,16 +7,20 @@ $(document).ready(function(){
   $("#save").css("display","none");
   $('#createBtn').click(function(){
 
-    // input에 입력하는 값들을 뽑아서 변수에 저장
+    //3자리 숫자로 만드는 함수
+    function pad(n,width){
+      n=n+'';
+      return n.length >= width ? n: new Array(width - n.length + 1).join('0')+n;
+    }
+    var m_number = pad(listCount,3);
 
-    var m_number = $('#m_number').val();
+    // input에 입력하는 값들을 뽑아서 변수에 저장
     var m_group = $('#m_group').val();
 
     // var m_url="http://168.188.7.186/Tangerine/load.html#";
     var m_url="http://34.87.29.227/soy/main.html#";
 
     // encodeURIComponent로 인코딩
-
     m_number = encodeURIComponent(m_number);
     m_group=encodeURIComponent(m_group);
     m_url = encodeURIComponent(m_url);
@@ -138,6 +142,9 @@ $(document).ready(function(){
     $("#m_title").val("");
     $("#m_number").val("");
     $("#m_group").val("");
+    $('#qrcode').attr('src', '');
+    $('#add').css("display","none");
+
   }
 
   // Add Submit
@@ -176,6 +183,8 @@ $(document).ready(function(){
         alert("물품 데이터를 찾을 수 없습니다.");
       }
     });
+    $('#qrcode').attr('src', '');
+    $('#add').css("display","none");
   }
 
   // Table reload

@@ -18,7 +18,7 @@ $(document).ready(function(){
     var m_group = $('#m_group').val();
 
     // var m_url="http://168.188.7.186/Tangerine/load.html#";
-    var m_url="http://34.87.29.227/sohui/main.html#";
+    var m_url="http://34.87.29.227/soy/main.html#";
 
     // encodeURIComponent로 인코딩
     m_number = encodeURIComponent(m_number);
@@ -144,6 +144,7 @@ $(document).ready(function(){
     $("#m_group").val("");
     $('#qrcode').attr('src', '');
     $('#add').css("display","none");
+
   }
 
   // Add Submit
@@ -182,7 +183,6 @@ $(document).ready(function(){
         alert("물품 데이터를 찾을 수 없습니다.");
       }
     });
-
     $('#qrcode').attr('src', '');
     $('#add').css("display","none");
   }

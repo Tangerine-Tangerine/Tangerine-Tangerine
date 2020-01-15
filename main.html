@@ -41,11 +41,10 @@
           <tr>
             <td><a id="Main" name="Main">MAIN</a></td>
             <td><a id="Info" name="Info">SEARCH</a></td>
-            <td><a>
-              <label class="qrcode-text-btn">
-                <input type="file" accept="image/*" capture=environment onchange="openQRCamera(this);" tabindex=-1>
-              </label>
-            </a></td>
+            <td>
+              <label id="file_text" for="ex_file"><a>QR</a></label>
+              <input type="file" id="ex_file" accept="image/*" capture=environment onchange="openQRCamera(this);" tabindex=-1>
+            </td>
           </tr>
         </table>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

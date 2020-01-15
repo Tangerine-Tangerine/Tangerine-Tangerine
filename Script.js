@@ -361,7 +361,7 @@ function openQRCamera(node) {
       } else {
         if(res != ""){
           location.href = res;
-          // location.reload();
+          location.reload();
         }
       }
     };

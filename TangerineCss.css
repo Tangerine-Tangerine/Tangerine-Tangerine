@@ -147,6 +147,10 @@ div.pullUp a:hover:before{
   font-family: inherit;
   padding: 0.3em 0.5em;
 }
+/* 취소버튼 */
+.bttn-ccl{
+  background-color: #999;
+}
 /* 불가버튼 */
 .bttn-no{
   background-color: #ED7D31;

@@ -187,6 +187,10 @@ div.pullUp a:hover:before{
 /* 대여 */
 #rent{
   display: none;
+  position: absolute;
+  left: 19%;
+  top: 30%;
+  z-index: 30;
 
   background: #FCF9EA;
   padding: 1.2em 1.2em 0.3em 1.2em;
@@ -202,7 +206,10 @@ div.pullUp a:hover:before{
 #rent table td{
   text-align: left;
   font-weight: bold;
-  padding: 0.2em 0.4em;
+  padding-top: 0.2em;
+}
+#rent table .front{
+  width: 4.5em;
 }
 #rent table td[colspan="2"]{
   text-align: right;
@@ -211,6 +218,10 @@ div.pullUp a:hover:before{
 /* 반납 */
 #return{
   display: none;
+  position: absolute;
+  left: 18%;
+  top: 30%;
+  z-index: 30;
 
   background: #FCF9EA;
   padding: 1.2em 1.2em 0.3em 1.2em;
@@ -226,7 +237,10 @@ div.pullUp a:hover:before{
 #return table td{
   text-align: left;
   font-weight: bold;
-  padding: 0.2em 0.4em;
+  padding-top: 0.2em;
+}
+#return table .front{
+  width: 4.5em;
 }
 #return table td[colspan="2"]{
   text-align: right;

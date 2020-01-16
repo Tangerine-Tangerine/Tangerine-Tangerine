@@ -8,9 +8,9 @@ body{
   font-family: 'Nanum Gothic', sans-serif;
 }
 
-footer{
-  position: absolute;
-  bottom: 1.3em;
+#logo{
+  vertical-align: top;
+  width: 7em;
 }
 
 /* 버튼 */
@@ -52,13 +52,15 @@ footer{
   color: black;
   font-weight: bold;
 }
-/* 불가버튼 */
+/* 대여중 버튼 */
 .bttn-no{
-  background-color: #ED7D31;
+  background-color: #6E7783;
 }
-/* 가능버튼 */
+/* 삭제버튼 */
 .bttn-yes{
   background-color: #70AD47;
+  background-color: #fe4365;
+  background-color: #e94e77;
 }
 
 /* 로그인 버튼 */
@@ -119,6 +121,7 @@ footer{
   -moz-transition-timing-function: cubic-bezier(100,50,21,6);
 }
 #menu{
+  margin-top: 0.5em;
   padding-top: 1.2em;
   text-align:center;
   height: 4.2em;
@@ -129,7 +132,7 @@ footer{
 .mbtn{
   cursor: pointer;
   color:#999;
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: bold;
   letter-spacing: 0.03em;
   text-transform:uppercase;
@@ -206,7 +209,11 @@ footer{
 
 /* 물품 추가 div */
 #qrcreate{
-  margin-top: 8%;
+  position: absolute;
+  left: 18.37%;
+  top: 20%;
+  z-index: 30;
+  /* margin-top: 8%; */
   border-radius: 0.5em;
   background: #324142;
   background: #383a3f;
@@ -224,9 +231,12 @@ footer{
   display: inline-block;
 }
 #qrcreate td{
-  padding: 0.2em 1em;
+  padding-top: 0.2em;
   padding-right: 0;
   text-align: left;
+}
+#qrcreate table .front{
+  width: 5em;
 }
 #qrcreate input{
   color: black;

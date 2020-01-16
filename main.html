@@ -21,6 +21,7 @@
   <title>Tangerine-Tangerine</title>
 </head>
 <body>
+
   <div  class="container">
     <div class="row">
       <div id="loadPage" class="col-xs-12 col-md-12">
@@ -76,23 +77,23 @@
 
     <!-- 대여 버튼 눌렀을때 -->
     <div class="row">
-      <div id="rent" class="col-xs-9 col-xs-offset-1 col-sm-6 col-md-3 col-md-offset-4">
+      <div id="rent" class="col-md-offset-3">
         <input type="hidden" id="rent_hidden" value="">
         <table>
           <tr>
-            <td>물품명</td>
+            <td class="front">물품명</td>
             <td><input type="text" style="width:11em;" id="rent-pname" disabled ></td>
           </tr>
           <tr>
-            <td>대여자</td>
+            <td class="front">대여자</td>
             <td><input type="text" style="width:11em;" placeholder="대여자" id="rent-rname" required></td>
           </tr>
           <tr>
-            <td>대여기간</td>
+            <td class="front">대여기간</td>
             <td><input type="date" style="width:11em;" id="rent-date" required></td>
           </tr>
           <tr>
-            <td>비밀번호</td>
+            <td class="front">비밀번호</td>
             <td><input type="password" style="width:11em;" id="rent-pw" required></td>
           </tr>
           <tr>
@@ -108,18 +109,18 @@
     <!-- 반납 버튼 눌렀을때 -->
     <div class="row">
       <input type="hidden" id="return_hidden" value="">
-      <div id="return" class="col-xs-9 col-xs-offset-1 col-sm-6 col-md-3 col-md-offset-4">
+      <div id="return" class="col-md-offset-3">
         <table>
           <tr>
-            <td>물품명</td>
+            <td class="front">물품명</td>
             <td><input type="text" style="width:11em;" disabled id="return-pname"></td>
           </tr>
           <tr>
-            <td>대여자</td>
+            <td class="front">대여자</td>
             <td><input type="text" style="width:11em;" placeholder="대여자" id="return-rname"></td>
           </tr>
           <tr>
-            <td>비밀번호</td>
+            <td class="front">비밀번호</td>
             <td><input type="password" style="width:11em;" id="return-pw"></td>
           </tr>
           <tr>

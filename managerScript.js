@@ -255,8 +255,6 @@ $(document).ready(function(){
           data : { sendFile : sendFile },
           success : function() {
             alert("물품 생성이 완료되었습니다.");
-            // clearTable();
-            // loadTable();
           },
           error : function() { alert("uploads error"); }
         });
@@ -312,7 +310,7 @@ $(document).ready(function(){
       $("#search").css("display","block");
     }
     else{
-      $("#search").val("");
+      $("#srch").val("");
       $("#search").css("display","none");
     }
   }
@@ -340,7 +338,6 @@ $(document).ready(function(){
         $("#line-"+i).css("display","none");
       }
     }
-    $("#search").val("");
   }
 
   // Search 결과 되돌리기
@@ -354,7 +351,7 @@ $(document).ready(function(){
   // Main Clicked
   function mainClicked(){
     revertTable();
-    $("#search").val("");
+    $("#srch").val("");
     $("#search").css("display","none");
     addCancel();
   }
@@ -364,7 +361,7 @@ $(document).ready(function(){
   $("#btn-add").click(addClicked);
   $("#btn-main").click(mainClicked);
   $("#btn-search").click(searchClicked);
-  $("#srch").click(searchTable);
+  $("#btn-searchSubmit").click(searchTable);
   $("#add").click(addSubmit);
   $("#logout").click(logOutClicked);
 });

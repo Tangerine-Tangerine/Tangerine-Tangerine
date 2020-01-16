@@ -58,9 +58,7 @@ body{
 }
 /* 삭제버튼 */
 .bttn-yes{
-  background-color: #70AD47;
-  background-color: #fe4365;
-  background-color: #e94e77;
+  background-color: #ff914d;
 }
 
 /* 로그인 버튼 */
@@ -203,7 +201,7 @@ body{
   padding: 0.3em;
 }
 #goods table td{
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 248, 245, 0.9);
   border-radius: 0.5em;
 }
 
@@ -213,7 +211,6 @@ body{
   left: 18.37%;
   top: 20%;
   z-index: 30;
-  /* margin-top: 8%; */
   border-radius: 0.5em;
   background: #324142;
   background: #383a3f;

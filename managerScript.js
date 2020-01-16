@@ -73,6 +73,22 @@ $(document).ready(function(){
     }
   }
 
+  // Cookie 삭제
+  function removeCookie(){
+    var rm = new Date();
+
+    rm.setDate( rm.getDate() - 1 );
+    document.cookie = "idCookie" + "=" + "; expires=" + rm.toGMTString();
+  }
+
+  // Logout
+  function logOutClicked(){
+    removeCookie();
+    manager_ID = "";
+    $("#logged").css("display","none");
+    $("#manage").css("display","block");
+  }
+
   // Button Click 함수
   function tableBtnClicked(obj){
     var objId = $(obj).attr("id");
@@ -98,24 +114,29 @@ $(document).ready(function(){
         }
         newArray.splice(idx,1);
         var sendFile = JSON.stringify(newArray);
-        $("#line-"+idx).remove();
         $.ajax({
           url : "uploads.php",
           type : 'POST',
           data : { sendFile : sendFile },
-          success : function() {
-            clearTable();
-            loadTable();
-          },
-          error : function() {
-            alert("upload error");
-          }
+          success : function() { alert("물품 삭제가 완료되었습니다"); },
+          error : function() { alert("upload error"); }
         });
+        $("#line-"+idx).remove();
+        for(var i=idx+1; i<listCount; i++){
+          var newIdx = Number($("#index-"+i).text())-1;
+          $("#line-"+i).attr("id","line-"+newIdx);
+          $("#index-"+i).text(newIdx);
+          $("#index-"+i).attr("id","index-"+newIdx);
+          $("#cat-"+i).attr("id","cat-"+newIdx);
+          $("#pname-"+i).attr("id","pname-"+newIdx);
+          $("#rname-"+i).attr("id","rname-"+newIdx);
+          $("#date-"+i).attr("id","date-"+newIdx);
+          $("#btn-"+i).attr("id","date-"+newIdx);
+        }
+        listCount--;
       },
       error : function() { alert("데이터 파일을 찾을 수 없습니다."); }
     });
-    alert("물품 삭제가 완료되었습니다");
-
   }
 
   // Data Table load
@@ -201,9 +222,8 @@ $(document).ready(function(){
     $("#m_title").val("");
     $("#m_number").val("");
     $("#m_group").val("");
-    $('#qrcode').attr('src', '');
-    $('#add').css("display","none");
-
+    $('#qrcode').attr('src', "");
+    $("#add").css("display","none");
   }
 
   // Add Submit
@@ -217,6 +237,7 @@ $(document).ready(function(){
         var newArr = new Array();
         newArr = result;
         var newArr_part = new Array();
+        var imgSrc = $("#qrcode").attr("src");
         newArr_part.push(result.length);
         newArr_part.push(input_group);
         newArr_part.push(input_title);
@@ -225,6 +246,7 @@ $(document).ready(function(){
         newArr_part.push("-");
         newArr_part.push(1);
         newArr_part.push("-");
+        newArr_part.push(imgSrc);
         newArr.push(newArr_part);
         var sendFile = JSON.stringify(newArr);
         $.ajax({
@@ -232,20 +254,45 @@ $(document).ready(function(){
           type : 'POST',
           data : { sendFile : sendFile },
           success : function() {
-            clearTable();
-            loadTable();
+            alert("물품 생성이 완료되었습니다.");
           },
           error : function() { alert("uploads error"); }
         });
-        alert("물품 생성이 완료되었습니다.");
+        var newTr = $('<tr />', { id : "line-" + listCount });
+
+        var indexTd = $('<td />', { text : listCount , id : "index-"+listCount });
+        indexTd.appendTo(newTr);
+
+        var catTd = $('<td />', { text : input_group, id : "cat-"+listCount });
+        catTd.appendTo(newTr);
+
+        var pnameTd = $('<td />', { text : input_title, id : "pname-"+listCount });
+        pnameTd.appendTo(newTr);
+
+        var rnameTd = $('<td />', { text : "-", id : "rname-"+listCount });
+        rnameTd.appendTo(newTr);
+
+        var dateTd = $('<td />', { text : "- ~ -", id : "date-"+listCount });
+        dateTd.appendTo(newTr);
+
+        var btn = $('<input />', {
+          type : "button",
+          value : "삭제",
+          id : "btn-"+result.length,
+          class : "bttn-simple bttn-md bttn-yes",
+          click : function() { tableBtnClicked(this); }
+        });
+        var btnTd = $('<td />');
+        $(btn).appendTo(btnTd);
+        $(btnTd).appendTo(newTr);
+        $(newTr).appendTo("#mainTable");
+        listCount++;
         addCancel();
       },
       error : function(){
         alert("물품 데이터를 찾을 수 없습니다.");
       }
     });
-    $('#qrcode').attr('src', '');
-    $('#add').css("display","none");
   }
 
   // Table Clear
@@ -263,7 +310,7 @@ $(document).ready(function(){
       $("#search").css("display","block");
     }
     else{
-      $("#search").val("");
+      $("#srch").val("");
       $("#search").css("display","none");
     }
   }
@@ -291,7 +338,6 @@ $(document).ready(function(){
         $("#line-"+i).css("display","none");
       }
     }
-    $("#search").val("");
   }
 
   // Search 결과 되돌리기
@@ -305,7 +351,7 @@ $(document).ready(function(){
   // Main Clicked
   function mainClicked(){
     revertTable();
-    $("#search").val("");
+    $("#srch").val("");
     $("#search").css("display","none");
     addCancel();
   }
@@ -315,6 +361,7 @@ $(document).ready(function(){
   $("#btn-add").click(addClicked);
   $("#btn-main").click(mainClicked);
   $("#btn-search").click(searchClicked);
-  $("#srch").click(searchTable);
+  $("#btn-searchSubmit").click(searchTable);
   $("#add").click(addSubmit);
+  $("#logout").click(logOutClicked);
 });

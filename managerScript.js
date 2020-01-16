@@ -1,20 +1,27 @@
 $("#add").css("display","none");
 $(document).ready(function(){
+  var listCount = 0;
   var manager_ID = "";
+  loadTable();
+  getCookie();
 
   $("#save").css("display","none");
   $('#createBtn').click(function(){
 
-    // input에 입력하는 값들을 뽑아서 변수에 저장
+    //3자리 숫자로 만드는 함수
+    function pad(n,width){
+      n=n+'';
+      return n.length >= width ? n: new Array(width - n.length + 1).join('0')+n;
+    }
+    var m_number = pad(listCount,3);
 
-    var m_number = $('#m_number').val();
+    // input에 입력하는 값들을 뽑아서 변수에 저장
     var m_group = $('#m_group').val();
 
     // var m_url="http://168.188.7.186/Tangerine/load.html#";
     var m_url="http://34.87.29.227/soy/main.html#";
 
     // encodeURIComponent로 인코딩
-
     m_number = encodeURIComponent(m_number);
     m_group=encodeURIComponent(m_group);
     m_url = encodeURIComponent(m_url);
@@ -25,7 +32,6 @@ $(document).ready(function(){
     // 이미지가 나타날 영역에 원하는 내용을 넣은 QR code의 이미지를 출력
     $('#qrcode').attr('src', googleQRUrl+m_url+m_number+'_'+m_group+'&choe=UTF-8');
     $("#add").css("display","block");
-
   });
 
   // Login Submit시 함수
@@ -39,6 +45,7 @@ $(document).ready(function(){
           if(list[i][0]==input_id && list[i][1]==input_pw){
             manager_ID = input_id;
             loginSuccess();
+            makeCookie(input_id);
           }
         }
       },
@@ -52,12 +59,72 @@ $(document).ready(function(){
     $("#logged").css("display","block");
   }
 
+  // Cookie 생성
+  function makeCookie(inputID){
+    document.cookie = "idCookie" + '=' + inputID;
+  }
+
+  // Cookie 가져오기
+  function getCookie(){
+    var value = String(document.cookie);
+    if(value.length > 3){
+      manager_ID = value.split('-')[1];
+      loginSuccess();
+    }
+  }
+
+  // Button Click 함수
+  function tableBtnClicked(obj){
+    var objId = $(obj).attr("id");
+    var idxArr = objId.split("-");
+    var idx = Number(idxArr[1]);
+
+    if($(obj).val()=="대여"){
+      alert("현재 대여중인 물품은 삭제할 수 없습니다.")
+    } else{
+      deleteLine(idx);
+    }
+  }
+
+  // Delete function
+  function deleteLine(idx){
+    var newArray = new Array();
+    $.ajax({
+      url : "data/Data.json",
+      success : function(result) {
+        newArray = result;
+        for(var i=idx; i<newArray.length; i++){
+          newArray[i][0] = newArray[i][0] - 1;
+        }
+        newArray.splice(idx,1);
+        var sendFile = JSON.stringify(newArray);
+        $("#line-"+idx).remove();
+        $.ajax({
+          url : "uploads.php",
+          type : 'POST',
+          data : { sendFile : sendFile },
+          success : function() {
+            clearTable();
+            loadTable();
+          },
+          error : function() {
+            alert("upload error");
+          }
+        });
+      },
+      error : function() { alert("데이터 파일을 찾을 수 없습니다."); }
+    });
+    alert("물품 삭제가 완료되었습니다");
+
+  }
+
   // Data Table load
-  function tableLoad(){
+  function loadTable(){
     $.ajax({
       url: "data/Data.json",
       success: function(result) {
         for(var i=0; i<result.length; i++){
+          listCount++;
           var loadTr = $('<tr />', {
             id : "line-" + i
           });
@@ -96,7 +163,7 @@ $(document).ready(function(){
           if(result[i][6]==0) { // 대여여부 0이면 대여중
             var btn = $('<input />', {
               type : "button",
-              value : "불가",
+              value : "대여",
               id : "btn-"+i,
               class : "bttn-simple bttn-md bttn-no",
               click : function() { tableBtnClicked(this); }
@@ -105,7 +172,7 @@ $(document).ready(function(){
           else {            // 대여여부 1이면 대여가능
             var btn = $('<input />', {
               type : "button",
-              value : "가능",
+              value : "삭제",
               id : "btn-"+i,
               class : "bttn-simple bttn-md bttn-yes",
               click : function() { tableBtnClicked(this); }
@@ -119,8 +186,135 @@ $(document).ready(function(){
       },
       error : function(result) { alert("저장된 물품 데이터가 없습니다."); }
     });
+  }
+
+  // Add 메뉴 클릭
+  function addClicked(){
+    if($("#qrcreate").css("display")=="none"){
+      $("#qrcreate").css("display","block");
+    }
+  }
+
+  // Add 취소
+  function addCancel(){
+    $("#qrcreate").css("display","none");
+    $("#m_title").val("");
+    $("#m_number").val("");
+    $("#m_group").val("");
+    $('#qrcode').attr('src', '');
+    $('#add').css("display","none");
 
   }
 
+  // Add Submit
+  function addSubmit(){
+    var input_title = $("#m_title").val();
+    var input_group = $("#m_group").val();
+
+    $.ajax({
+      url : "data/Data.json",
+      success : function(result){
+        var newArr = new Array();
+        newArr = result;
+        var newArr_part = new Array();
+        newArr_part.push(result.length);
+        newArr_part.push(input_group);
+        newArr_part.push(input_title);
+        newArr_part.push("-");
+        newArr_part.push("-");
+        newArr_part.push("-");
+        newArr_part.push(1);
+        newArr_part.push("-");
+        newArr.push(newArr_part);
+        var sendFile = JSON.stringify(newArr);
+        $.ajax({
+          url : "uploads.php",
+          type : 'POST',
+          data : { sendFile : sendFile },
+          success : function() {
+            clearTable();
+            loadTable();
+          },
+          error : function() { alert("uploads error"); }
+        });
+        alert("물품 생성이 완료되었습니다.");
+        addCancel();
+      },
+      error : function(){
+        alert("물품 데이터를 찾을 수 없습니다.");
+      }
+    });
+    $('#qrcode').attr('src', '');
+    $('#add').css("display","none");
+  }
+
+  // Table Clear
+  function clearTable(){
+    for(var i=0; i<listCount; i++){
+      $("#line-"+i).remove();
+      console.log("remove line"+i);
+    }
+    listCount = 0;
+  }
+
+  // Search Div Load
+  function searchClicked(){
+    if( $("#search").css("display") == "none" ){
+      $("#search").css("display","block");
+    }
+    else{
+      $("#search").val("");
+      $("#search").css("display","none");
+    }
+  }
+
+  // Search function
+  function searchTable(){
+    revertTable();
+    for(var i=0; i<listCount; i++){
+      var findKeyWord = false;
+      var keyword = String($("#srch").val());
+
+      if( $("#index-"+i).text().match(keyword) ){
+        findKeyWord = true;
+      }
+      if( $("#cat-"+i).text().match(keyword) ){
+        findKeyWord = true;
+      }
+      if( $("#pname-"+i).text().match(keyword) ){
+        findKeyWord = true;
+      }
+      if( $("#rname-"+i).text().match(keyword) ){
+        findKeyWord = true;
+      }
+      if(findKeyWord==false){
+        $("#line-"+i).css("display","none");
+      }
+    }
+    $("#search").val("");
+  }
+
+  // Search 결과 되돌리기
+  function revertTable(){
+    for(var i=0; i<listCount; i++){
+      if($("#line-"+i).css("display")=="none")
+      $("#line-"+i).css("display","");
+    }
+  }
+
+  // Main Clicked
+  function mainClicked(){
+    revertTable();
+    $("#search").val("");
+    $("#search").css("display","none");
+    addCancel();
+  }
+
+  $("#btn-addCancel").click(addCancel);
   $("#btn-login").click(loginSubmit);
+  $("#btn-add").click(addClicked);
+  $("#btn-main").click(mainClicked);
+  $("#btn-search").click(searchClicked);
+  $("#srch").click(searchTable);
+  $("#add").click(addSubmit);
 });

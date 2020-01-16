@@ -224,6 +224,7 @@ body{
   padding: 1em;
   border: 0.1em solid rgb(255, 189, 89, 0.2);
   box-shadow: 0 0 1em 0.4em rgb(255, 189, 89, 0.2);
+  display: none;
 }
 #qrcreate table{
   color: #E3AC53;
@@ -258,4 +259,8 @@ body{
   margin-top: 1em;
   margin-left: 6.5em;
   margin-left: 35%;
+}
+
+#search{
+  display: none;
 }

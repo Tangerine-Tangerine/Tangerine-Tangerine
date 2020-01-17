@@ -1,4 +1,5 @@
 $("#add").css("display","none");
+$("#btn-imageCancel").css("display","none");
 $(document).ready(function(){
   var listCount = 0;
   var manager_ID = "";
@@ -391,6 +392,7 @@ $(document).ready(function(){
 
     $("#img_qr").attr("src",$("#imgsrc-"+idx).attr("value"));
     $("#div_qrimage").css("display","block");
+    $("#btn-imageCancel").css("display","block");
   }
 
   // QR image Cancel
@@ -398,6 +400,7 @@ $(document).ready(function(){
     pageUnblur();
     $("#img_qr").attr("src","");
     $("#div_qrimage").css("display","none");
+      $("#btn-imageCancel").css("display","none");
   }
 
   // Page Blur

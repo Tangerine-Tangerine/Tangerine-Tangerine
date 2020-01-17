@@ -54,6 +54,8 @@
         <a class="mbtn" id="btn-main">Main</a>
         <a class="mbtn" id="btn-add">Add</a>
         <a class="mbtn" id="btn-search">SEARCH</a>
+        <a class="mbtn" id="btn-delay">DELAY</a>
+        <a class="mbtn" id="btn-member">MEMBER</a>
         <input type="button" id="logout" class="bttn-simple bttn-md bttn-logout" name="logout" value=" logout ">
       </div>
     </div>
@@ -114,6 +116,57 @@
         </div>
         <button id="add" class="bttn-simple bttn-md bttn-add">물품 추가</button>
       </div>
+    </div>
+
+    <!-- delay 버튼 (연체) -->
+    <div>
+      <div>
+        <table>
+          <tr>
+            <th>번호</th>
+            <th>물품명</th>
+            <th>대여자</th>
+            <th>E-mail 전송</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- 멤버 관리 -->
+    <div>
+      <div>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>E-mail</th>
+            <th>삭줴에엥버튼</th>
+          </tr>
+        </table>
+      </div>
+      <button>멤버 추가</button>
+    </div>
+
+    <!-- 멤버 추가 버튼 눌렀을 경우 -->
+    <div>
+      <table>
+        <tr>
+          <td>Name</td>
+          <td>
+            <input type="text" style="width:12em;" >
+          </td>
+        </tr>
+        <tr>
+          <td>E-mail</td>
+          <td>
+            <input type="text" style="width:12em;">
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input type="submit" value="add">
+          </td>
+        </tr>
+      </table>
     </div>
 
   </div> <!-- 전체 div 끝 -->

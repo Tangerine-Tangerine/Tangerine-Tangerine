@@ -261,3 +261,7 @@ body{
 #search{
   display: none;
 }
+
+#div_qrimage{
+  display: none;
+}

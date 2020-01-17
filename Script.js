@@ -41,12 +41,14 @@ $(document).ready(function() {
 
   // Page Blur(흐림처리)
   function pageBlur() {
-
+    $("#header_menu").css({'filter' : 'blur(5px)'});
+    $("#goods").css({'filter' : 'blur(5px)'});
   }
 
   // Page unBlur
   function pageUnblur() {
-
+    $("#header_menu").css({'filter' : 'blur(0px)'});
+    $("#goods").css({'filter' : 'blur(0px)'});
   }
 
   // DataBase Table Load ( 초기 테이블 로드 )
@@ -252,7 +254,7 @@ $(document).ready(function() {
       $("#return-rname").val( $("#rname-"+idx).text() );
       $("#return").css("display","block");
       $("#return_hidden").val(idx);
-      // pageBlur();
+      pageBlur();
     }
   }
 
@@ -262,7 +264,7 @@ $(document).ready(function() {
       $("#rent-pname").val( $("#pname-"+idx).text() );
       $("#rent").css("display","block");
       $("#rent").val(idx);
-      // pageBlur();
+      pageBlur();
     }
   }
 
@@ -278,6 +280,7 @@ $(document).ready(function() {
 
   // Rent Div에서 Cancel 버튼 눌렀을때
   function rentCancel(){
+    pageUnblur();
     $("#rent").css("display","none");
     $("#rent-date").val("");
     $("#rent-rname").val("");
@@ -288,6 +291,7 @@ $(document).ready(function() {
 
   // Return Div에서 Cancel 버튼 눌렀을때
   function returnCancel(){
+    pageUnblur();
     $("#return").css("display","none");
     $("#return-pname").val("");
     $("#return-rname").val("");

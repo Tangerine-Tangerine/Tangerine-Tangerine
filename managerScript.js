@@ -98,7 +98,9 @@ $(document).ready(function(){
     if($(obj).val()=="대여"){
       alert("현재 대여중인 물품은 삭제할 수 없습니다.")
     } else{
-      deleteLine(idx);
+      var conf = confirm("정말 삭제하시겠습니까?");
+      if(conf){ deleteLine(idx); }
+      else { alert("취소되었습니다"); }
     }
   }
 
@@ -129,6 +131,7 @@ $(document).ready(function(){
           $("#index-"+i).attr("id","index-"+newIdx);
           $("#cat-"+i).attr("id","cat-"+newIdx);
           $("#pname-"+i).attr("id","pname-"+newIdx);
+          $("#imgsrc-"+i).attr("id","imgsrc-"+newIdx);
           $("#rname-"+i).attr("id","rname-"+newIdx);
           $("#date-"+i).attr("id","date-"+newIdx);
           $("#btn-"+i).attr("id","date-"+newIdx);
@@ -164,9 +167,17 @@ $(document).ready(function(){
 
           var pnameTd = $('<td />', {
             text : result[i][2],
-            id : "pname-"+i
+            id : "pname-"+i,
+            click : function() { imageDivLoad(this); }
           });
           pnameTd.appendTo(loadTr);
+
+          var srcVal = $('<input />', {
+            type : "hidden",
+            id : "imgsrc-"+i,
+            value : result[i][8],
+          })
+          $(srcVal).appendTo(pnameTd);
 
           var rnameTd = $('<td />', {
             text : result[i][3],
@@ -213,11 +224,13 @@ $(document).ready(function(){
   function addClicked(){
     if($("#qrcreate").css("display")=="none"){
       $("#qrcreate").css("display","block");
+      pageBlur();
     }
   }
 
   // Add 취소
   function addCancel(){
+    pageUnblur();
     $("#qrcreate").css("display","none");
     $("#m_title").val("");
     $("#m_number").val("");
@@ -261,19 +274,29 @@ $(document).ready(function(){
         var newTr = $('<tr />', { id : "line-" + listCount });
 
         var indexTd = $('<td />', { text : listCount , id : "index-"+listCount });
-        indexTd.appendTo(newTr);
+        $(indexTd).appendTo(newTr);
 
         var catTd = $('<td />', { text : input_group, id : "cat-"+listCount });
-        catTd.appendTo(newTr);
+        $(catTd).appendTo(newTr);
 
-        var pnameTd = $('<td />', { text : input_title, id : "pname-"+listCount });
-        pnameTd.appendTo(newTr);
+        var pnameTd = $('<td />', {
+          text : input_title, id : "pname-"+listCount,
+          click : function() { imageDivLoad(this); }
+        });
+        $(pnameTd).appendTo(newTr);
+
+        var srcVal = $('<input />', {
+          type : "hidden",
+          id : "imgsrc-"+listCount,
+          value : imgSrc
+        })
+        $(srcVal).appendTo(pnameTd);
 
         var rnameTd = $('<td />', { text : "-", id : "rname-"+listCount });
-        rnameTd.appendTo(newTr);
+        $(rnameTd).appendTo(newTr);
 
         var dateTd = $('<td />', { text : "- ~ -", id : "date-"+listCount });
-        dateTd.appendTo(newTr);
+        $(dateTd).appendTo(newTr);
 
         var btn = $('<input />', {
           type : "button",
@@ -284,6 +307,8 @@ $(document).ready(function(){
         });
         var btnTd = $('<td />');
         $(btn).appendTo(btnTd);
+
+
         $(btnTd).appendTo(newTr);
         $(newTr).appendTo("#mainTable");
         listCount++;
@@ -350,10 +375,41 @@ $(document).ready(function(){
 
   // Main Clicked
   function mainClicked(){
+    pageUnblur();
     revertTable();
     $("#srch").val("");
     $("#search").css("display","none");
     addCancel();
+  }
+
+  // QR image load
+  function imageDivLoad(obj){3
+    pageBlur();
+    var objId = String($(obj).attr("id"));
+    var idxArr = objId.split("-");
+    var idx = Number(idxArr[1]);
+
+    $("#img_qr").attr("src",$("#imgsrc-"+idx).attr("value"));
+    $("#div_qrimage").css("display","block");
+  }
+
+  // QR image Cancel
+  function imageCancel(){
+    pageUnblur();
+    $("#img_qr").attr("src","");
+    $("#div_qrimage").css("display","none");
+  }
+
+  // Page Blur
+  function pageBlur(){
+    $("#menu").css({'filter' : 'blur(5px)'});
+    $("#goods").css({'filter' : 'blur(5px)'});
+  }
+
+  // Page unblur
+  function pageUnblur(){
+    $("#menu").css({'filter' : 'blur(0px)'});
+    $("#goods").css({'filter' : 'blur(0px)'});
   }
 
   $("#btn-addCancel").click(addCancel);
@@ -364,4 +420,5 @@ $(document).ready(function(){
   $("#btn-searchSubmit").click(searchTable);
   $("#add").click(addSubmit);
   $("#logout").click(logOutClicked);
+  $("#btn-imageCancel").click(imageCancel);
 });

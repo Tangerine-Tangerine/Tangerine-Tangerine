@@ -258,10 +258,8 @@ body{
   margin-left: 35%;
 }
 
-#search{
-  display: none;
-}
-
-#div_qrimage{
-  display: none;
-}
+#search{ display: none; }
+#div_qrimage{ display: none; }
+#div_delayList { display : none; }
+#div_memberManage { display : none; }
+#div_memberAdd { display : none; }

@@ -43,12 +43,14 @@ $(document).ready(function() {
   function pageBlur() {
     $("#header_menu").css({'filter' : 'blur(5px)'});
     $("#goods").css({'filter' : 'blur(5px)'});
+    $("#search").css({'filter' : 'blur(5px)'});
   }
 
   // Page unBlur
   function pageUnblur() {
     $("#header_menu").css({'filter' : 'blur(0px)'});
     $("#goods").css({'filter' : 'blur(0px)'});
+    $("#search").css({'filter' : 'blur(0px)'});
   }
 
   // DataBase Table Load ( 초기 테이블 로드 )
@@ -226,7 +228,7 @@ $(document).ready(function() {
   // 동아리 명단 비교
   function memberCheck(str){
     for(var i=0; i<memberList.length; i++){
-      if(str==memberList[i]) { return true; }
+      if(str==memberList[i][0]) { return true; }
     }
     alert("회원 목록에 존재하지 않는 이름입니다. 다시 확인해주세요")
     return false;

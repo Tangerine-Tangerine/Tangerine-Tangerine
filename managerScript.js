@@ -97,12 +97,43 @@ $(document).ready(function(){
     var idx = Number(idxArr[1]);
 
     if($(obj).val()=="대여"){
-      alert("현재 대여중인 물품은 삭제할 수 없습니다.")
+      var conf = confirm("현재 대여중인 물품입니다. 자동 반납처리 하시겠습니까?");
+      if(conf) { autoReturn(idx); }
     } else{
       var conf = confirm("정말 삭제하시겠습니까?");
       if(conf){ deleteLine(idx); }
       else { alert("취소되었습니다"); }
     }
+  }
+
+  // 자동 반납처리 함수
+  function autoReturn(idx){
+    $("#rname-"+idx).text("-");
+    $("#date-"+idx).text("- ~ -");
+    $("#date-"+idx).attr("dateOver",false);
+    $("#date-"+idx).attr("endDate","-");
+    $("#btn-"+idx).attr("class","bttn-simple bttn-md bttn-yes");
+    $("#btn-"+idx).attr("value","삭제");
+
+
+    $.ajax({
+      url : "data/Data.json",
+      success : function(result) {
+        var newArray = result;
+        newArray[idx][3] = "-";
+        newArray[idx][4] = "-";
+        newArray[idx][5] = "-";
+        newArray[idx][6] = 1;
+        newArray[idx][7] = "";
+        var sendFile = JSON.stringify(newArray);
+        $.ajax({
+          url : "uploads.php",
+          type : 'POST',
+          data : { sendFile : sendFile }
+        });
+        alert("자동 반납처리 되었습니다.");
+      }
+    });
   }
 
   // Delete function
@@ -189,7 +220,9 @@ $(document).ready(function(){
           var date = result[i][4] + " ~ " + result[i][5];
           var dateTd = $('<td />', {
             text : date,
-            id : "date-"+i
+            id : "date-"+i,
+            dateOver : dateOverChecker(result[i][5]),
+            endDate : result[i][5]
           });
           dateTd.appendTo(loadTr);
 
@@ -219,6 +252,17 @@ $(document).ready(function(){
       },
       error : function(result) { alert("저장된 물품 데이터가 없습니다."); }
     });
+  }
+
+  // 날짜 비교
+  function dateOverChecker(day){
+    var dayString = String(day).split('.');
+    var presentDate = new Date();
+    var endDate = new Date(parseInt("20"+dayString[0]), parseInt(dayString[1])-1, parseInt(dayString[2])-1);
+
+    if(presentDate.getTime() > endDate.getTime()){ return true; }
+
+    return false;
   }
 
   // Add 메뉴 클릭
@@ -325,7 +369,6 @@ $(document).ready(function(){
   function clearTable(){
     for(var i=0; i<listCount; i++){
       $("#line-"+i).remove();
-      console.log("remove line"+i);
     }
     listCount = 0;
   }
@@ -407,12 +450,109 @@ $(document).ready(function(){
   function pageBlur(){
     $("#menu").css({'filter' : 'blur(5px)'});
     $("#goods").css({'filter' : 'blur(5px)'});
+    $("#search").css({'filter' : 'blur(5px)'});
   }
 
   // Page unblur
   function pageUnblur(){
     $("#menu").css({'filter' : 'blur(0px)'});
     $("#goods").css({'filter' : 'blur(0px)'});
+    $("#search").css({'filter' : 'blur(0px)'});
+  }
+
+  // DelayList 표시
+  function popDelayList(){
+    $("#div_delayList").css("display","block");
+    delaylistLoad();
+  }
+
+  // DelayList 종료
+  function cancelDelayList(){
+    $("#div_delayList").css("display","block");
+    $("#listBody").remove();
+  }
+
+  // DelayList Table load
+  function delaylistLoad(){
+    // var listBody = $('<tbody />', {
+    //   id : "listBody"
+    // });
+    for(var i=0; i<listCount; i++){
+      if(String($("#date-"+i).attr("dateOver"))=="true"){
+        var nLine = $('<tr />' , {
+          id : "delay_line-"+i
+        });
+
+        var nIndex = $('<td />', {
+          text : i,
+          id : "delay_index-"+i
+        });
+        $(nIndex).appendTo(nLine);
+
+        var nPname = $('<td />', {
+          text : $("#pname-"+i).text(),
+          id : "delay_pname-"+i
+        });
+        $(nPname).appendTo(nLine);
+
+        var nRname = $('<td />', {
+          text : $("#rname-"+i).text(),
+          id : "delay_rname-"+i
+        });
+        $(nRname).appendTo(nLine);
+
+        var nBtn = $('<input />', {
+          type : "button",
+          value : "메일 발송",
+          id : "nBtn-"+i,
+          class : "bttn-simple bttn-md bttn-yes",
+          click : function() { sendDelayMail(this); }
+        });
+        var nBtnTd = $('<td />');
+        $(nBtn).appendTo(nBtnTd);
+        $(nBtnTd).appendTo(nLine);
+        // $(nLine).appendTo(listBody);
+        $(nLine).appendTo("#table_delayList");
+
+      }
+    }
+    // $("#listBody").appendTo("#table_delayList");
+
+  }
+
+  // mail Send 함수
+  function sendDelayMail(obj){
+    var objId = $(obj).attr("id");
+    var idxArr = objId.split("-");
+    var idx = Number(idxArr[1]);
+    var name = $("#rname-"+idx).text();
+    var toAddress = "-";
+    var dateString = String($("#date-"+idx).attr("endDate"));
+    var dateArray = dateString.split(".");
+    var addressUpdated = false;
+
+    $.ajax({
+      url : "data/SPG_MEMBER.json",
+      async : false,
+      success : function (result) {
+        for(var i=0; i<result.length; i++){
+          if(result[i][0]==name){ toAddress = result[i][1]; addressUpdated = true; }
+        }
+      },
+      error : function () { alert("Member List Load Error!"); }
+    });
+
+    $.ajax({
+      url : 'sendDelayMail.php',
+      type : 'POST',
+      data : {
+        mailAddress : toAddress,
+        endDate : "20"+dateArray[0]+"-"+dateArray[1]+"-"+dateArray[2],
+        pname : $("#pname-"+idx).text()
+      },
+      success : function() { alert("안내 메일 전송을 완료했습니다"); },
+      error : function() { alert("메일 전송에 실패했습니다."); }
+    });
   }
 
   $("#btn-addCancel").click(addCancel);
@@ -424,4 +564,5 @@ $(document).ready(function(){
   $("#add").click(addSubmit);
   $("#logout").click(logOutClicked);
   $("#btn-imageCancel").click(imageCancel);
+  $("#btn-delay").click(popDelayList);
 });

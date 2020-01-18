@@ -480,7 +480,7 @@ $(document).ready(function(){
         });
 
         var nIndex = $('<td />', {
-          text : i+100,
+          text : i,
           id : "delay_index-"+i,
           class : "n"
         });

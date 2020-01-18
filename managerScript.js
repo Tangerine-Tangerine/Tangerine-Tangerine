@@ -31,7 +31,6 @@ $(document).ready(function(){
 
     googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl=";
 
-
     // 이미지가 나타날 영역에 원하는 내용을 넣은 QR code의 이미지를 출력
     $('#qrcode').attr('src', googleQRUrl+m_url+m_number+'_'+m_group+'&choe=UTF-8');
     $("#add").css("display","block");
@@ -202,6 +201,7 @@ $(document).ready(function(){
           var pnameTd = $('<td />', {
             text : result[i][2],
             id : "pname-"+i,
+            class : "pnames",
             click : function() { imageDivLoad(this); }
           });
           pnameTd.appendTo(loadTr);
@@ -480,14 +480,16 @@ $(document).ready(function(){
         });
 
         var nIndex = $('<td />', {
-          text : i,
-          id : "delay_index-"+i
+          text : i+100,
+          id : "delay_index-"+i,
+          class : "n"
         });
         $(nIndex).appendTo(nLine);
 
         var nPname = $('<td />', {
           text : $("#pname-"+i).text(),
-          id : "delay_pname-"+i
+          id : "delay_pname-"+i,
+          class : "na"
         });
         $(nPname).appendTo(nLine);
 
@@ -504,7 +506,9 @@ $(document).ready(function(){
           class : "bttn-simple bttn-md bttn-yes",
           click : function() { sendDelayMail(this); }
         });
-        var nBtnTd = $('<td />');
+        var nBtnTd = $('<td />', {
+          class : "e"
+        });
         $(nBtn).appendTo(nBtnTd);
         $(nBtnTd).appendTo(nLine);
         $(nLine).appendTo("#table_delayList");
@@ -582,17 +586,21 @@ $(document).ready(function(){
 
           var memberNameTd = $('<td />', {
             text : result[i][0],
-            id : "memberName-"+i
+            id : "memberName-"+i,
+            class : "nm"
           });
           memberNameTd.appendTo(loadTr);
 
           var memberMailTd = $('<td />', {
             text : result[i][1],
-            id : "memberMail-"+i
+            id : "memberMail-"+i,
+            class : "em",
           });
           memberMailTd.appendTo(loadTr);
 
-          var btnTd = $('<td />');
+          var btnTd = $('<td />',{
+            class : "dels"
+          });
           var memberBtn = $('<input />', {
             type : "button",
             value : "삭제",
@@ -720,7 +728,6 @@ $(document).ready(function(){
     $("#input_memberName").val("");
     $("#input_memberEmail").val("");
   }
-
 
 
   $("#btn-addCancel").click(addCancel);

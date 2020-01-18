@@ -1,4 +1,3 @@
-
 @import 'https://fonts.googleapis.com/css?family=Raleway';
 
 body{
@@ -9,8 +8,15 @@ body{
 }
 
 #logo{
-  vertical-align: top;
   width: 7em;
+}
+
+footer{
+  position:fixed;
+  left: 1em;
+  bottom: 1.2em;
+
+  z-index: 0;
 }
 
 /* 버튼 */
@@ -112,17 +118,20 @@ body{
 
 /* 메뉴바 */
 * {
-	-webkit-transition-property: all;
-	-webkit-transition-duration: .2s;
+  -webkit-transition-property: all;
+  -webkit-transition-duration: .2s;
   -moz-transition-timing-function: cubic-bezier(100,50,21,6);
-	-moz-transition-property: all;
+  -moz-transition-property: all;
   -moz-transition-timing-function: cubic-bezier(100,50,21,6);
 }
 #menu{
   margin-top: 0.5em;
-  padding-top: 1.2em;
+  padding-top: 1em;
   text-align:center;
-  height: 4.2em;
+  height: 3.8em;
+  margin-left: 0;
+
+  z-index: 25;
 }
 #menu img{
   vertical-align: middle;
@@ -130,13 +139,13 @@ body{
 .mbtn{
   cursor: pointer;
   color:#999;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: bold;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
   text-transform:uppercase;
   text-decoration:none;
   border-radius: 0;
-  padding: 0.3em 0.5em;
+  padding: 0.3em 0.47em;
   border-bottom: 0.1em dotted #999;
 }
 .mbtn:hover{
@@ -144,16 +153,16 @@ body{
   background:rgba(0, 0, 0, 0.4);
   background: #ffbd59;
   font-weight: bold;
-  padding: 0.8em 0.5em;
+  padding: 0.8em 0.47em;
   text-decoration:none;
   color:#1b1b1b;
 }
-
+/* 로그아웃 버튼 */
 .bttn-logout{
-  margin-left: 1em;
+  margin-left: 0.8em;
   background: #ffbd59;
   font-weight: bold;
-  font-size: 0.8em;
+  font-size: 0.78em;
   color: #13292a;
 }
 .bttn-logout:hover{
@@ -182,6 +191,17 @@ body{
 }
 
 /* 물품 목록 */
+#goods{
+  z-index: 20;
+  overflow-y: auto;
+  height: 50em;
+}
+#goods .pnames{
+  cursor: pointer;
+}
+#goods .pnames:hover{
+  text-decoration: underline;
+}
 #goods table{
   border-top: 3px double #ffbd59;
   border-bottom: 3px double #ffbd59;
@@ -191,24 +211,42 @@ body{
   margin: 0.4em 0;
   margin-top: 1em;
   width: 100%;
-  font-size: 0.8em;
+  font-size: 0.7em;
   border-spacing: 0.2em;
 }
 #goods table th{
   background: #ffbd59;
   border-radius: 0.5em;
   text-align: center;
-  padding: 0.3em;
+  padding: 0.5em;
 }
 #goods table td{
   background-color: rgba(255, 248, 245, 0.9);
   border-radius: 0.5em;
 }
 
-/* 물품 추가 div */
-#qrcreate{
+/* 물품명 클릭 -> qr코드 이미지 */
+#qrdiv{
+  text-align: center;
+}
+.divqrqr{
+  display: inline-block;
+}
+.divqrqr td{
+  text-align: right;
+}
+.margin{
+  margin-left: 4.8em;
+}
+.bttn-close{
+  background: #A593E0;
+  color: black;
+  font-weight: bold;
+}
+/* 물품 추가 div, 멤버 추가 div */
+#qrcreate, #div_memberAdd{
   position: absolute;
-  left: 18.37%;
+  left: 6.7em;
   top: 20%;
   z-index: 30;
   border-radius: 0.5em;
@@ -223,24 +261,37 @@ body{
   box-shadow: 0 0 1em 0.4em rgb(255, 189, 89, 0.2);
   display: none;
 }
-#qrcreate table{
+#div_memberAdd{
+  left: 5.5em;
+  top: 35%;
+  z-index: 40;
+}
+#qrcreate table, #div_memberAdd table{
   color: #E3AC53;
   display: inline-block;
 }
-#qrcreate td{
+#qrcreate td, #div_memberAdd td{
   padding-top: 0.2em;
   padding-right: 0;
   text-align: left;
 }
-#qrcreate table .front{
+#qrcreate table .front, #div_memberAdd table .front{
   width: 5em;
 }
-#qrcreate input{
+#qrcreate input, #div_memberAdd input{
   color: black;
 }
 #qrcreate td[colspan="2"] input{
   text-align: right;
 }
+#div_memberAdd td[colspan="2"] {
+  text-align: right;
+  padding-top: 0.4em;
+}
+#div_memberAdd #btn-memberAddSubmit{
+  color: white;
+}
+
 /* create 버튼 */
 .bttn-create{
   background: #A593E0;
@@ -258,6 +309,97 @@ body{
   margin-left: 35%;
 }
 
+/* 멤버관리 , 연체관리*/
+.membersdiv, .delaysdiv{
+  position: absolute;
+  left: 2.5em;
+  top: 20%;
+  z-index: 30;
+
+  border-radius: 0.5em;
+  background: #324142;
+  background: #383a3f;
+  text-align: center;
+
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  padding: 1em;
+  border: 0.1em solid rgb(255, 189, 89, 0.2);
+  box-shadow: 0 0 1em 0.4em rgb(255, 189, 89, 0.2);
+}
+.delaysdiv{
+  left: 2.3em;
+  width: 350px;
+}
+.n{
+  width: 50px;
+}
+.n0{
+  width: 48px;
+}
+.na0{
+  width: 114px;
+}
+.e0{
+  width: 88px;
+}
+.membersdiv div, .delaysdiv div{
+  padding: 0 0.2em 0.3em 0.2em;
+}
+.membersdiv .sec, .delaysdiv .sec{
+  margin-bottom: 0.5em;
+  border-bottom: 3px double #ffbd59;
+
+  /* 스크롤바 */
+  overflow-y: auto;
+  overflow-behavior: none;
+  height: 15em;
+}
+body div::-webkit-scrollbar, .membersdiv div::-webkit-scrollbar, .delaysdiv div::-webkit-scrollbar{
+  display: none;
+}
+.membersdiv table, .delaysdiv table{
+  border-collapse: separate;
+  width: 100%;
+  font-size: 0.8em;
+  border-spacing: 0.2em;
+}
+.membersdiv table th, .delaysdiv table th{
+  background: #ffbd59;
+  border-radius: 0.5em;
+  text-align: center;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+.membersdiv #overmembers, .delaysdiv #delaymem{
+  border-top: 3px double #ffbd59;
+  padding: 0.5em 0.2em 0.3em 0.2em;
+  margin-top: 1em;
+  margin-bottom: 0;
+  border-bottom: 1.5px dotted #ffbd59;
+}
+.nm{
+  width: 65px;
+}
+.em{
+  width: 160px;
+}
+.dels{
+  width: 70px;
+}
+.membersdiv #table_memberList{
+  margin-top: 0;
+}
+.membersdiv table td, .delaysdiv td{
+  background-color: rgba(255, 248, 245, 0.9);
+  border-radius: 0.5em;
+}
+.bttn-mem{
+  background: #A593E0;
+  font-weight: bold;
+}
+
+/* 초기 각 div display: none 처리 */
 #search{ display: none; }
 #div_qrimage{ display: none; }
 #div_delayList { display : none; }

@@ -1,3 +1,4 @@
+
 @import 'https://fonts.googleapis.com/css?family=Raleway';
 
 body{
@@ -194,7 +195,7 @@ footer{
 #goods{
   z-index: 20;
   overflow-y: auto;
-  height: 50em;
+  height: 45em;
 }
 #goods .pnames{
   cursor: pointer;
@@ -226,7 +227,11 @@ footer{
 }
 
 /* 물품명 클릭 -> qr코드 이미지 */
-#qrdiv{
+#qd{
+  z-index: 30;
+  position: absolute;
+  top: 30%;
+  left: 1em;
   text-align: center;
 }
 .divqrqr{
@@ -399,7 +404,7 @@ body div::-webkit-scrollbar, .membersdiv div::-webkit-scrollbar, .delaysdiv div:
   font-weight: bold;
 }
 
-/* 초기 각 div display: none 처리 */
+
 #search{ display: none; }
 #div_qrimage{ display: none; }
 #div_delayList { display : none; }

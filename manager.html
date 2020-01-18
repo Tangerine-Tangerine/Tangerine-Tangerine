@@ -130,6 +130,7 @@
           </tr>
         </table>
       </div>
+      <button id="btn-delayListClose">닫기</button>
     </div>
 
     <!-- 멤버 관리 -->
@@ -139,11 +140,12 @@
           <tr>
             <th>Name</th>
             <th>E-mail</th>
-            <th>삭줴에엥버튼</th>
+            <th>삭제</th>
           </tr>
         </table>
       </div>
       <button id="btn-memberAdd">멤버 추가</button>
+      <button id="btn-memberDivCancel">닫기</button>
     </div>
 
     <!-- 멤버 추가 버튼 눌렀을 경우 -->
@@ -152,20 +154,21 @@
         <tr>
           <td>Name</td>
           <td>
-            <input type="text" style="width:12em;" >
+            <input type="text" style="width:12em;" id="input_memberName">
           </td>
         </tr>
         <tr>
           <td>E-mail</td>
           <td>
-            <input type="text" style="width:12em;">
+            <input type="text" style="width:12em;" id="input_memberEmail">
           </td>
         </tr>
-        <tr>
+        <tfoot>
           <td colspan="2">
-            <input type="submit" value="add">
+            <input type="button" value="추가" id="btn-memberAddSubmit">
+            <input type="button" value="닫기" id="btn-memberAddCancel">
           </td>
-        </tr>
+        </tfoot>
       </table>
     </div>
 

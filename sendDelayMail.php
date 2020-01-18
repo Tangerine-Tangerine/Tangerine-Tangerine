@@ -5,15 +5,15 @@ include "Sendmail.php";
 $config=array(
   'host'=>'ssl://smtp.naver.com',
   'smtp_id'=>'sji0800',
-  'smtp_pw'=>'winchesj08',
+  'smtp_pw'=>'ahn1313!!',
   'debug'=>1,
   'charset'=>'utf-8',
   'ctype'=>'text/plain'
 );
 $sendmail = new Sendmail($config);
 
-// $to = $_POST["mailAddress"];
-$to = "sji0800@naver.com";
+$to = $_POST["mailAddress"];
+// $to = "sji0800@naver.com";
 $from = "sji0800@naver.com";
 $subject = "SPG 물품 반납관련 메일입니다.";
 $end_date = $_POST["endDate"];

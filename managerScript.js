@@ -2,6 +2,8 @@ $("#add").css("display","none");
 $("#btn-imageCancel").css("display","none");
 $(document).ready(function(){
   var listCount = 0;
+  var delayCount = 0;
+  var memberCount = 0;
   var manager_ID = "";
   loadTable();
   getCookie();
@@ -464,23 +466,17 @@ $(document).ready(function(){
   function popDelayList(){
     $("#div_delayList").css("display","block");
     delaylistLoad();
-  }
-
-  // DelayList 종료
-  function cancelDelayList(){
-    $("#div_delayList").css("display","block");
-    $("#listBody").remove();
+    pageBlur();
   }
 
   // DelayList Table load
   function delaylistLoad(){
-    // var listBody = $('<tbody />', {
-    //   id : "listBody"
-    // });
     for(var i=0; i<listCount; i++){
       if(String($("#date-"+i).attr("dateOver"))=="true"){
+        delayCount++;
         var nLine = $('<tr />' , {
-          id : "delay_line-"+i
+          id : "delay_line-"+i,
+          class : "delayLine"
         });
 
         var nIndex = $('<td />', {
@@ -511,13 +507,23 @@ $(document).ready(function(){
         var nBtnTd = $('<td />');
         $(nBtn).appendTo(nBtnTd);
         $(nBtnTd).appendTo(nLine);
-        // $(nLine).appendTo(listBody);
         $(nLine).appendTo("#table_delayList");
 
       }
     }
-    // $("#listBody").appendTo("#table_delayList");
+  }
 
+  // DelayList Table delete
+  function clearDelayDiv(){
+    $(".delayLine").remove();
+    delayCount = 0;
+  }
+
+  // DelayList Close
+  function closeDelayDiv(){
+    clearDelayDiv();
+    pageUnblur();
+    $("#div_delayList").css("display","none");
   }
 
   // mail Send 함수
@@ -555,6 +561,168 @@ $(document).ready(function(){
     });
   }
 
+  // member Div load
+  function memberDivLoad(){
+    $("#div_memberManage").css("display","block");
+    pageBlur();
+    loadMemberTable();
+  }
+
+  // memberTable load
+  function loadMemberTable(){
+    $.ajax({
+      url : "data/SPG_MEMBER.json",
+      success : function(result) {
+        for(var i=0; i<result.length; i++){
+          memberCount++;
+          var loadTr = $('<tr />', {
+            id : "memberLine-" + i,
+            class : "memberLineArr"
+          });
+
+          var memberNameTd = $('<td />', {
+            text : result[i][0],
+            id : "memberName-"+i
+          });
+          memberNameTd.appendTo(loadTr);
+
+          var memberMailTd = $('<td />', {
+            text : result[i][1],
+            id : "memberMail-"+i
+          });
+          memberMailTd.appendTo(loadTr);
+
+          var btnTd = $('<td />');
+          var memberBtn = $('<input />', {
+            type : "button",
+            value : "삭제",
+            id : "memberBtn-"+i,
+            class : "bttn-simple bttn-md bttn-yes",
+            click : function() { memberDeleteSubmit(this); }
+          });
+          $(memberBtn).appendTo(btnTd);
+          $(btnTd).appendTo(loadTr);
+
+          $(loadTr).appendTo("#table_memberList");
+        }
+      }
+    });
+  }
+
+  // member Div Cancel
+  function memberDivCancel(){
+    $("#div_memberManage").css("display","none");
+    $(".memberLineArr").remove();
+    memberCount = 0;
+    pageUnblur();
+  }
+
+  // member delete
+  function memberDeleteSubmit(obj){
+    var conf = confirm("해당 멤버를 정말 삭제하시겠습니까?")
+    if(conf) {
+      var objId = $(obj).attr("id");
+      var idxArr = objId.split("-");
+      var idx = Number(idxArr[1]);
+      $("#memberLine-"+idx).remove();
+      memberCount--;
+
+      var newArr = new Array();
+      $.ajax({
+        url : "data/SPG_MEMBER.json",
+        success : function(result) {
+          newArr = result;
+          newArr.splice(idx,1);
+          var sendFile = JSON.stringify(newArr);
+          $.ajax({
+            url : "member_uploads.php",
+            type : 'POST',
+            data : { sendFile : sendFile },
+            success : function() { alert("멤버 목록 제거가 완료되었습니다."); },
+            error : function() { alert("upload error"); }
+          });
+        }
+      });
+    } else {
+      alert("취소되었습니다");
+    }
+  }
+
+  // member Add Div load
+  function memberAddClicked(){
+    $("#div_memberAdd").css("display","block");
+  }
+
+  // member add
+  function memberAddSubmit(){
+    $("#div_memberAdd").css("display","none");
+    var input_Name = $("#input_memberName").val();
+    var input_Email = $("#input_memberEmail").val();
+
+    var newArr = new Array();
+    var newIdx;
+    $.ajax({
+      url : "data/SPG_MEMBER.json",
+      async : false,
+      success : function(result) {
+        newIdx = result.length;
+        newArr = result;
+        var newArr_Sub = new Array();
+        newArr_Sub.push(String(input_Name));
+        newArr_Sub.push(String(input_Email));
+        newArr.push(newArr_Sub);
+        var sendFile = JSON.stringify(newArr);
+        $.ajax({
+          url : "member_uploads.php",
+          type : 'POST',
+          data : { sendFile : sendFile },
+          success : function() { alert("추가가 완료되었습니다."); },
+          error : function() { alert("upload error"); }
+        });
+      },
+      error : function() { alert("멤버 목록을 찾을 수 없습니다."); }
+    });
+
+    memberCount++;
+    var newTr = $('<tr />', {
+      id : "memberLine-" + newIdx,
+      class : "memberLineArr"
+    });
+
+    var memberNameTd = $('<td />', {
+      text : input_Name,
+      id : "memberName-"+newIdx
+    });
+    memberNameTd.appendTo(newTr);
+
+    var memberMailTd = $('<td />', {
+      text : input_Email,
+      id : "memberMail-"+newIdx
+    });
+    memberMailTd.appendTo(newTr);
+
+    var btnTd = $('<td />');
+    var memberBtn = $('<input />', {
+      type : "button",
+      value : "삭제",
+      id : "memberBtn-"+newIdx,
+      class : "bttn-simple bttn-md bttn-yes",
+      click : function() { memberDeleteSubmit(this); }
+    });
+    $(memberBtn).appendTo(newTr);
+    $(btnTd).appendTo(newTr);
+    $(newTr).appendTo("#table_memberList");
+  }
+
+  // member add close
+  function memberAddClose(){
+    $("#div_memberAdd").css("display","none");
+    $("#input_memberName").val("");
+    $("#input_memberEmail").val("");
+  }
+
+
+
   $("#btn-addCancel").click(addCancel);
   $("#btn-login").click(loginSubmit);
   $("#btn-add").click(addClicked);
@@ -565,4 +733,10 @@ $(document).ready(function(){
   $("#logout").click(logOutClicked);
   $("#btn-imageCancel").click(imageCancel);
   $("#btn-delay").click(popDelayList);
+  $("#btn-member").click(memberDivLoad);
+  $("#btn-delayListClose").click(closeDelayDiv);
+  $("#btn-memberDivCancel").click(memberDivCancel);
+  $("#btn-memberAdd").click(memberAddClicked);
+  $("#btn-memberAddCancel").click(memberAddClose);
+  $("#btn-memberAddSubmit").click(memberAddSubmit);
 });

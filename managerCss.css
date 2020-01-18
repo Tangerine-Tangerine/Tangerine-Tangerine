@@ -1,4 +1,3 @@
-
 @import 'https://fonts.googleapis.com/css?family=Raleway';
 
 body{
@@ -400,7 +399,7 @@ body div::-webkit-scrollbar, .membersdiv div::-webkit-scrollbar, .delaysdiv div:
   font-weight: bold;
 }
 
-
+/* 초기 각 div display: none 처리 */
 #search{ display: none; }
 #div_qrimage{ display: none; }
 #div_delayList { display : none; }

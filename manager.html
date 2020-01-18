@@ -50,10 +50,11 @@
     <!-- 메뉴바 -->
     <div class="row">
       <div id="menu" class="col-xs-12 col-md-12">
-        <img id="logo" src="./img/tantan.png">
         <a class="mbtn" id="btn-main">Main</a>
         <a class="mbtn" id="btn-add">Add</a>
         <a class="mbtn" id="btn-search">SEARCH</a>
+        <a class="mbtn" id="btn-delay">DELAY</a>
+        <a class="mbtn" id="btn-member">MEMBER</a>
         <input type="button" id="logout" class="bttn-simple bttn-md bttn-logout" name="logout" value=" logout ">
       </div>
     </div>
@@ -61,7 +62,7 @@
     <!--search 누를 경우 검색창  -->
     <div class="row" id="search">
       <input type="text" id="srch">
-      <button class="bttn-simple bttn-md bttn-srch">검색</button>
+      <button class="bttn-simple bttn-md bttn-srch" id="btn-searchSubmit">검색</button>
     </div>
 
     <!-- 대여 물품 목록표 -->
@@ -80,9 +81,23 @@
       </div>
     </div>
 
+    <!--물품명 클릭 -> qr코드 이미지  -->
+    <div class="row" id="qrdiv">
+      <table class="divqrqr">
+        <tr><td>
+          <div id="div_qrimage">
+            <img src="" alt="qr코드" id="img_qr">
+          </div>
+        </td></tr>
+        <tr><td>
+          <input type="button" id="btn-imageCancel" class="bttn-simple bttn-md bttn-close margin" value="닫기">
+        </td></tr>
+      </table>
+    </div>
+
     <!-- 물품추가 -> qr생성 -->
     <div class="row">
-      <div id="qrcreate" class="col-md-offset-3">
+      <div id="qrcreate" class="col-md-offset-4">
         <table>
           <tr>
             <td class="front">물품 이름</td>
@@ -105,6 +120,82 @@
           <img id="qrcode" src=''>
         </div>
         <button id="add" class="bttn-simple bttn-md bttn-add">물품 추가</button>
+      </div>
+    </div>
+
+    <!-- delay 버튼 (연체) -->
+    <div class="row" id="div_delayList">
+      <div class="delaysdiv col-md-offset-4 col-sm-offset-3 col-xs-offset-0">
+        <div>
+          <table id="delaymem">
+            <tr>
+              <th class="n0">번호</th>
+              <th class="na0">물품명</th>
+              <th>대여자</th>
+              <th class="e0">E-mail 전송</th>
+            </tr>
+          </table>
+        </div>
+        <div class="sec">
+          <table id="table_delayList">
+          </table>
+        </div>
+        <button id="btn-delayListClose" class="bttn-simple bttn-mid bttn-close">닫기</button>
+      </div>
+    </div>
+
+    <!-- 멤버 관리 -->
+    <div class="row" id ="div_memberManage">
+      <div class="membersdiv col-md-offset-4 col-sm-offset-3 col-xs-offset-0">
+        <div>
+          <table id="overmembers">
+            <tr>
+              <th class="nm">Name</th>
+              <th class="em">E-mail</th>
+              <th class="dels">삭제</th>
+            </tr>
+          </table>
+        </div>
+        <div class="sec">
+          <table id="table_memberList">
+          </table>
+        </div>
+        <button id="btn-memberAdd" class="bttn-simple bttn-md bttn-mem">멤버 추가</button>
+        <button id="btn-memberDivCancel" class="bttn-simple bttn-md bttn-close">닫기</button>
+      </div>
+    </div>
+
+    <!-- 멤버 추가 버튼 눌렀을 경우 -->
+    <div class="row">
+      <div id="div_memberAdd" class="col-md-offset-4">
+        <table>
+          <tr>
+            <td class="front">Name</td>
+            <td>
+              <input type="text" style="width:12em;" id="input_memberName">
+            </td>
+          </tr>
+          <tr>
+            <td>E-mail</td>
+            <td>
+              <input type="text" style="width:12em;" id="input_memberEmail">
+            </td>
+          </tr>
+          <tfoot>
+            <td colspan="2">
+              <input type="button" id="btn-memberAddSubmit" class="bttn-simple bttn-md bttn-mem" value="추가">
+              <input type="button" id="btn-memberAddCancel" class="bttn-simple bttn-md bttn-close" value="닫기">
+            </td>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <div class="row foot">
+      <div id="col-xs-12 col-sm-12 col-md-12">
+        <footer>
+          <img id="logo" src="./img/tantan.png">
+        </footer>
       </div>
     </div>
 

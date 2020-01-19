@@ -21,8 +21,7 @@ $(document).ready(function(){
     // input에 입력하는 값들을 뽑아서 변수에 저장
     var m_group = $('#m_group').val();
 
-    // var m_url="http://168.188.7.186/Tangerine/load.html#";
-    var m_url="http://34.87.29.227/soy/main.html#";
+    var m_url="http://34.87.29.227/Tangerine-Tangerine/main.html#";
 
     // encodeURIComponent로 인코딩
     m_number = encodeURIComponent(m_number);

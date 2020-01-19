@@ -303,7 +303,7 @@ $(document).ready(function() {
 
   // 관리자 페이지로 이동
   function moveToAdmin(){
-    var adminPage = window.open("http://34.87.29.227/Ahn/manager.html", '_blank');
+    var adminPage = window.open("http://34.87.29.227/Tangerine-Tangerine/manager.html", '_blank');
     // 링크 경로에 맞춰서 수정해야함
     adminPage.focus();
   }

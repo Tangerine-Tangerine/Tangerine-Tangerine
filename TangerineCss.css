@@ -105,9 +105,8 @@ div.pullUp a:hover:before{
 
   border-collapse: separate;
   margin: 0;
-  /* margin-top: 1em; */
   width: 100%;
-  font-size: 0.8em;
+  font-size: 0.7em;
   border-spacing: 0.2em;
 }
 .home2 #goods table th{

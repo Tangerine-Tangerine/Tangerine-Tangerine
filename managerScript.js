@@ -716,7 +716,7 @@ $(document).ready(function(){
       class : "bttn-simple bttn-md bttn-yes",
       click : function() { memberDeleteSubmit(this); }
     });
-    $(memberBtn).appendTo(newTr);
+    $(memberBtn).appendTo(btnTd);
     $(btnTd).appendTo(newTr);
     $(newTr).appendTo("#table_memberList");
   }
